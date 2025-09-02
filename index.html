@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanstrow Spares - Pub Skittles Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="team-info">
+                        <div class="team-logo">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="team-details">
+                            <h1>WANSTROW SPARES</h1>
+                            <p>There's Only One Team In Wanstrow!</p>
+                        </div>
+                    </div>
+                    <div class="season-info">
+                        <p>Season 2025/26 • High Scorer: <span id="high-scorer">No games yet</span></p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="overview">
+                        <i class="fas fa-trophy"></i> Team Overview
+                    </button>
+                    <button class="tab-btn" data-tab="players">
+                        <i class="fas fa-users"></i> Player Stats
+                    </button>
+                    <button class="tab-btn" data-tab="results">
+                        <i class="fas fa-calendar"></i> Results
+                    </button>
+                    <button class="tab-btn admin-only" data-tab="entry" style="display: none;">
+                        <i class="fas fa-plus"></i> Add Match
+                    </button>
+                    <button class="admin-login-btn">
+                        <i class="fas fa-plus"></i> Admin Login
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                
+                <!-- Overview Tab -->
+                <div class="tab-content" id="overview">
+                    <!-- Key Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card wins">
+                            <div class="stat-number" id="wins-count">0</div>
+                            <div class="stat-label">Wins</div>
+                        </div>
+                        <div class="stat-card losses">
+                            <div class="stat-number" id="losses-count">0</div>
+                            <div class="stat-label">Losses</div>
+                        </div>
+                        <div class="stat-card draws">
+                            <div class="stat-number" id="draws-count">0</div>
+                            <div class="stat-label">Draws</div>
+                        </div>
+                        <div class="stat-card points">
+                            <div class="stat-number" id="points-count">0</div>
+                            <div class="stat-label">Points</div>
+                        </div>
+                        <div class="stat-card average">
+                            <div class="stat-number" id="average-score">TBD</div>
+                            <div class="stat-label">Avg Score</div>
+                        </div>
+                    </div>
+
+                    <!-- Next Fixture -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-calendar"></i> Next Fixture</h3>
+                        <div class="fixture-card">
+                            <div class="fixture-match">Wanstrow Spares vs <span id="next-opponent">Dangerous Damsels</span></div>
+                            <div class="fixture-details"><span id="next-date">10/09/2025</span> • <span id="next-venue">Home</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Season Fixtures -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-crown"></i> Season Fixtures</h3>
+                        <div id="fixtures-list" class="fixtures-list">
+                            <!-- Fixtures will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Form -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-chart-line"></i> Recent Form</h3>
+                        <div class="form-display" id="form-display">
+                            <p class="no-matches">Season starts soon - form will show here after matches!</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Management (Admin Only) -->
+                    <div class="content-card admin-only" id="team-management" style="display: none;">
+                        <div class="team-management-header">
+                            <h3><i class="fas fa-users"></i> Team Management</h3>
+                            <p>Add or remove players from the squad</p>
+                        </div>
+                        <div class="team-management-content">
+                            <!-- Add Player -->
+                            <div class="management-section add-player">
+                                <h4><i class="fas fa-plus"></i> Add New Player</h4>
+                                <div class="management-controls">
+                                    <input type="text" id="new-player-name" placeholder="Enter player name">
+                                    <button id="add-player-btn"><i class="fas fa-plus"></i> Add Player</button>
+                                </div>
+                            </div>
+
+                            <!-- Remove Player -->
+                            <div class="management-section remove-player">
+                                <h4><i class="fas fa-user-minus"></i> Remove Player</h4>
+                                <div class="management-controls">
+                                    <select id="remove-player-select">
+                                        <option value="">Select player to remove...</option>
+                                    </select>
+                                    <button id="remove-player-btn"><i class="fas fa-user-minus"></i> Remove Player</button>
+                                </div>
+                                <p class="warning">⚠️ XYZ cannot be removed as it's needed for handicap situations</p>
+                            </div>
+
+                            <!-- Current Squad -->
+                            <div class="management-section current-squad">
+                                <h4>Current Squad (<span id="squad-count">11</span> players)</h4>
+                                <div id="squad-display" class="squad-grid">
+                                    <!-- Squad will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Players Tab -->
+                <div class="tab-content" id="players" style="display: none;">
+                    <div class="content-card">
+                        <h3><i class="fas fa-users"></i> Player Statistics</h3>
+                        <div class="table-container">
+                            <table class="stats-table">
+                                <thead>
+                                    <tr>
+                                        <th>Player</th>
+                                        <th>Games</th>
+                                        <th>Total Pins</th>
+                                        <th>Average</th>
+                                        <th>High Score</th>
+                                        <th>Form</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="players-table">
+                                    <!-- Player stats will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Tab -->
+                <div class="tab-content" id="results" style="display: none;">
+                    <div class="content-card">
+                        <h3><i class="fas fa-calendar"></i> Recent Results</h3>
+                        <div id="results-list" class="results-list">
+                            <p class="no-matches">No matches played yet - results will appear here!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Entry Tab (Admin Only) -->
+                <div class="tab-content admin-only" id="entry" style="display: none;">
+                    <div class="content-card">
+                        <h3><i class="fas fa-plus"></i> Add Match Result</h3>
+                        <form id="match-form" class="match-form">
+                            <!-- Match Details -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Match Date</label>
+                                    <input type="date" id="match-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Opponent</label>
+                                    <select id="opponent" required>
+                                        <option value="">Select opponent...</option>
+                                        <option value="Ligs">Ligs</option>
+                                        <option value="Daleks">Daleks</option>
+                                        <option value="Barrow Boys">Barrow Boys</option>
+                                        <option value="Dangerous Damsels">Dangerous Damsels</option>
+                                        <option value="King Pins">King Pins</option>
+                                        <option value="Three Horseshoes">Three Horseshoes</option>
+                                        <option value="Balls Deep">Balls Deep</option>
+                                        <option value="The Tossers">The Tossers</option>
+                                        <option value="Double Ds">Double Ds</option>
+                                        <option value="Bridge Hill Mob">Bridge Hill Mob</option>
+                                        <option value="Deep In Cider">Deep In Cider</option>
+                                        <option value="All 3 Holes">All 3 Holes</option>
+                                        <option value="Allsorts">Allsorts</option>
+                                        <option value="Lionhearts">Lionhearts</option>
+                                        <option value="The Persuaders">The Persuaders</option>
+                                        <option value="Pin Pounders">Pin Pounders</option>
+                                        <option value="Horseshoe Belles">Horseshoe Belles</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Venue</label>
+                                    <select id="venue" required>
+                                        <option value="Home">Home</option>
+                                        <option value="Away">Away</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Match Scores -->
+                            <div class="match-scores">
+                                <div class="score-section">
+                                    <label>Match Score (Legs + Pin Bonus)</label>
+                                    <div class="score-inputs">
+                                        <div class="score-input">
+                                            <label>Wanstrow</label>
+                                            <input type="number" id="wanstrow-match-score" placeholder="0" required>
+                                        </div>
+                                        <div class="score-divider">-</div>
+                                        <div class="score-input">
+                                            <label id="opponent-match-label">Opponent</label>
+                                            <input type="number" id="opponent-match-score" placeholder="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="score-help">6 legs (1 point each) + 2 points for highest pins total = 8 points max</div>
+                                </div>
+                            </div>
+
+                            <!-- Pin Totals -->
+                            <div class="pin-totals">
+                                <div class="total-group wanstrow-total">
+                                    <label>Wanstrow Spares Pin Total</label>
+                                    <input type="number" id="wanstrow-total" placeholder="0" required>
+                                </div>
+                                <div class="total-group opponent-total">
+                                    <label><span id="opponent-total-label">Opponent</span> Pin Total</label>
+                                    <input type="number" id="opponent-total" placeholder="0" required>
+                                </div>
+                            </div>
+
+                            <!-- Individual Player Scores -->
+                            <div class="players-section">
+                                <h4>Individual Player Scores (Enter scores for 6 players who played)</h4>
+                                <div class="players-grid" id="players-grid">
+                                    <!-- Player inputs will be populated here -->
+                                </div>
+                            </div>
+
+                            <!-- XYZ Explanation -->
+                            <div class="xyz-explanation">
+                                <p><strong>XYZ Player:</strong> Enter XYZ's calculated handicap score manually based on the lowest scores per round from both teams.</p>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="form-actions">
+                                <button type="submit" class="save-btn">
+                                    <i class="fas fa-save"></i> Save Match Result
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>Updated weekly • Share this link: wanstrow-spares-dashboard</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <h3>Admin Login</h3>
+            <input type="password" id="admin-password" placeholder="Enter admin password">
+            <div class="modal-actions">
+                <button id="login-btn">Login</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
