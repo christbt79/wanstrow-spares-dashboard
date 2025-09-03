@@ -78,19 +78,53 @@ document.addEventListener('DOMContentLoaded', function() {
     updateNextFixture();
 });
 
-// Load data from localStorage
-function loadData() {
-    const savedData = localStorage.getItem('wanstrowSparesData');
-    if (savedData) {
-        const parsed = JSON.parse(savedData);
-        // Merge saved data with default structure
-        dashboardData = { ...dashboardData, ...parsed };
+// Load data from localStorage AND from shared data file
+async function loadData() {
+    try {
+        // First try to load from shared data file (GitHub Pages)
+        const response = await fetch('./data/matches.json');
+        if (response.ok) {
+            const sharedData = await response.json();
+            dashboardData = { ...dashboardData, ...sharedData };
+            console.log('Loaded shared data successfully');
+        }
+    } catch (error) {
+        console.log('No shared data found, loading from localStorage');
+        
+        // Fallback to localStorage
+        const savedData = localStorage.getItem('wanstrowSparesData');
+        if (savedData) {
+            const parsed = JSON.parse(savedData);
+            dashboardData = { ...dashboardData, ...parsed };
+        }
     }
 }
 
-// Save data to localStorage
+// Save data to localStorage AND generate instructions for shared update
 function saveData() {
     localStorage.setItem('wanstrowSparesData', JSON.stringify(dashboardData));
+    
+    // Generate the JSON that needs to be committed to GitHub
+    generateSharedDataFile();
+}
+
+// Generate shared data file content for GitHub
+function generateSharedDataFile() {
+    const dataToShare = JSON.stringify(dashboardData, null, 2);
+    
+    console.log('=== SHARED DATA UPDATE REQUIRED ===');
+    console.log('Copy the following JSON content and save it as data/matches.json in your GitHub repository:');
+    console.log('');
+    console.log(dataToShare);
+    console.log('');
+    console.log('=== END OF DATA ===');
+    
+    // Also show alert to user
+    if (isAdmin) {
+        setTimeout(() => {
+            alert('Match saved! To share with others:\n\n1. Create a "data" folder in your GitHub repo\n2. Create "matches.json" file in that folder\n3. Copy the JSON from browser console\n4. Commit and push to GitHub\n\nCheck browser console (F12) for the exact JSON to copy.');
+        }, 500);
+    }
 }
 
 // Setup event listeners
@@ -362,7 +396,7 @@ function processMatch(matchData) {
     // Add to matches array
     dashboardData.matches.push(matchData);
     
-    // Update team stats
+    // Update team stats using CORRECT skittles scoring
     const isWin = matchData.wanstrowMatchScore > matchData.opponentMatchScore;
     const isLoss = matchData.wanstrowMatchScore < matchData.opponentMatchScore;
     const isDraw = matchData.wanstrowMatchScore === matchData.opponentMatchScore;
@@ -372,7 +406,15 @@ function processMatch(matchData) {
     if (isDraw) dashboardData.teamStats.draws++;
     
     dashboardData.teamStats.gamesPlayed++;
-    dashboardData.teamStats.points = (dashboardData.teamStats.wins * 3) + (dashboardData.teamStats.draws * 1);
+    
+    // FIXED: Use correct skittles scoring - points = legs won (not 3 for a win)
+    // Calculate total points from all matches
+    let totalPoints = 0;
+    dashboardData.matches.forEach(match => {
+        totalPoints += match.wanstrowMatchScore; // This is already legs won + pin bonus
+    });
+    dashboardData.teamStats.points = totalPoints;
+    
     dashboardData.teamStats.totalPins += matchData.wanstrowTotal;
     dashboardData.teamStats.averageScore = Math.round((dashboardData.teamStats.totalPins / dashboardData.teamStats.gamesPlayed) * 10) / 10;
     
