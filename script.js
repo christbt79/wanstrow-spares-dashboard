@@ -71,11 +71,18 @@ const ADMIN_PASSWORD = 'WanstrowSpares2025';
 let isAdmin = false;
 
 // Initialize dashboard
-document.addEventListener('DOMContentLoaded', function() {
-    loadData();
+document.addEventListener('DOMContentLoaded', async function() {
+    const sharedDataLoaded = await loadData();
     setupEventListeners();
     updateDisplay();
     updateNextFixture();
+    
+    // If shared data was loaded, force a display update after a short delay
+    if (sharedDataLoaded) {
+        setTimeout(() => {
+            updateDisplay();
+        }, 100);
+    }
 });
 
 // Load data from localStorage AND from shared data file
