@@ -469,7 +469,11 @@ function updateOverviewTab() {
     document.getElementById('wins-count').textContent = dashboardData.teamStats.wins;
     document.getElementById('losses-count').textContent = dashboardData.teamStats.losses;
     document.getElementById('draws-count').textContent = dashboardData.teamStats.draws;
-    document.getElementById('points-count').textContent = dashboardData.teamStats.points;
+    
+    // Format points to show decimals if needed
+    const points = dashboardData.teamStats.points;
+    document.getElementById('points-count').textContent = points % 1 === 0 ? points : points.toFixed(1);
+    
     document.getElementById('average-score').textContent = dashboardData.teamStats.averageScore || 'TBD';
     
     // Next fixture
