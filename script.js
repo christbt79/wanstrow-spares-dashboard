@@ -472,7 +472,7 @@ function updateOverviewTab() {
     
     // Format points to show decimals if needed
     const points = dashboardData.teamStats.points;
-    document.getElementById('points-count').textContent = points % 1 === 0 ? points : points.toFixed(1);
+    document.getElementById('points-count').textContent = points % 1 === 0 ? points.toString() : points.toFixed(1);
     
     document.getElementById('average-score').textContent = dashboardData.teamStats.averageScore || 'TBD';
     
