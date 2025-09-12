@@ -1,1 +1,367 @@
-
+{
+  "teamStats": {
+    "wins": 2,
+    "losses": 0,
+    "draws": 0,
+    "points": 12.5,
+    "gamesPlayed": 2,
+    "totalPins": 481,
+    "averageScore": 240.5
+  },
+  "players": {
+    "Christian": {
+      "games": 2,
+      "totalPins": 83,
+      "highScore": 42,
+      "scores": [
+        41,
+        42
+      ],
+      "form": "same"
+    },
+    "Keith": {
+      "games": 1,
+      "totalPins": 48,
+      "highScore": 48,
+      "scores": [
+        48
+      ],
+      "form": []
+    },
+    "Helen": {
+      "games": 2,
+      "totalPins": 72,
+      "highScore": 39,
+      "scores": [
+        33,
+        39
+      ],
+      "form": "same"
+    },
+    "Martin": {
+      "games": 2,
+      "totalPins": 83,
+      "highScore": 44,
+      "scores": [
+        44,
+        39
+      ],
+      "form": "same"
+    },
+    "Paddy": {
+      "games": 2,
+      "totalPins": 72,
+      "highScore": 39,
+      "scores": [
+        33,
+        39
+      ],
+      "form": "same"
+    },
+    "Steve": {
+      "games": 1,
+      "totalPins": 42,
+      "highScore": 42,
+      "scores": [
+        42
+      ],
+      "form": []
+    },
+    "Adrian": {
+      "games": 2,
+      "totalPins": 81,
+      "highScore": 44,
+      "scores": [
+        44,
+        37
+      ],
+      "form": "same"
+    },
+    "Jason": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Linda": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Margaret": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "XYZ": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": [],
+      "isHandicap": true
+    }
+  },
+  "matches": [
+    {
+      "date": "2025-09-02",
+      "opponent": "Barrow Boys",
+      "venue": "Away",
+      "wanstrowMatchScore": 7,
+      "opponentMatchScore": 1,
+      "wanstrowTotal": 243,
+      "opponentTotal": 189,
+      "playerScores": {
+        "Christian": 41,
+        "Keith": 48,
+        "Helen": 33,
+        "Martin": 44,
+        "Paddy": 33,
+        "Steve": 0,
+        "Adrian": 44,
+        "Jason": 0,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0
+      }
+    },
+    {
+      "date": "2025-09-11",
+      "opponent": "Dangerous Damsels",
+      "venue": "Home",
+      "wanstrowMatchScore": 5.5,
+      "opponentMatchScore": 2.5,
+      "wanstrowTotal": 238,
+      "opponentTotal": 222,
+      "playerScores": {
+        "Christian": 42,
+        "Keith": 0,
+        "Helen": 39,
+        "Martin": 39,
+        "Paddy": 39,
+        "Steve": 42,
+        "Adrian": 37,
+        "Jason": 0,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0
+      }
+    }
+  ],
+  "nextFixture": {
+    "opponent": "King Pins",
+    "date": "17/09/2025",
+    "venue": "Away"
+  },
+  "fixtures": [
+    {
+      "date": "2025-09-02",
+      "displayDate": "02/09/2025",
+      "opponent": "Barrow Boys",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-09-10",
+      "displayDate": "10/09/2025",
+      "opponent": "Dangerous Damsels",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-09-17",
+      "displayDate": "17/09/2025",
+      "opponent": "King Pins",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-09-25",
+      "displayDate": "25/09/2025",
+      "opponent": "Three Horseshoes",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-10-01",
+      "displayDate": "01/10/2025",
+      "opponent": "Balls Deep",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-10-08",
+      "displayDate": "08/10/2025",
+      "opponent": "The Tossers",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-10-16",
+      "displayDate": "16/10/2025",
+      "opponent": "Double Ds",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-10-20",
+      "displayDate": "20/10/2025",
+      "opponent": "Bridge Hill Mob",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-10-30",
+      "displayDate": "30/10/2025",
+      "opponent": "Deep in Cider",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-11-07",
+      "displayDate": "07/11/2025",
+      "opponent": "All 3 Holes",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-11-14",
+      "displayDate": "14/11/2025",
+      "opponent": "Allsorts",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-11-18",
+      "displayDate": "18/11/2025",
+      "opponent": "Lionhearts",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-11-24",
+      "displayDate": "24/11/2025",
+      "opponent": "The Persuaders",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-12-03",
+      "displayDate": "03/12/2025",
+      "opponent": "Horseshoe Belles",
+      "venue": "Away"
+    },
+    {
+      "date": "2025-12-12",
+      "displayDate": "12/12/2025",
+      "opponent": "Pin Pounders",
+      "venue": "Home"
+    },
+    {
+      "date": "2025-12-16",
+      "displayDate": "16/12/2025",
+      "opponent": "Ligs",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-01-09",
+      "displayDate": "09/01/2026",
+      "opponent": "Daleks",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-01-13",
+      "displayDate": "13/01/2026",
+      "opponent": "Barrow Boys",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-01-22",
+      "displayDate": "22/01/2026",
+      "opponent": "Dangerous Damsels",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-01-28",
+      "displayDate": "28/01/2026",
+      "opponent": "King Pins",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-02-05",
+      "displayDate": "05/02/2026",
+      "opponent": "Three Horseshoes",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-02-11",
+      "displayDate": "11/02/2026",
+      "opponent": "Balls Deep",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-02-18",
+      "displayDate": "18/02/2026",
+      "opponent": "The Tossers",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-02-26",
+      "displayDate": "26/02/2026",
+      "opponent": "Double Ds",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-03-02",
+      "displayDate": "02/03/2026",
+      "opponent": "Bridge Hill Mob",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-03-12",
+      "displayDate": "12/03/2026",
+      "opponent": "Deep in Cider",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-03-20",
+      "displayDate": "20/03/2026",
+      "opponent": "All 3 Holes",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-03-27",
+      "displayDate": "27/03/2026",
+      "opponent": "Allsorts",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-03-31",
+      "displayDate": "31/03/2026",
+      "opponent": "Lionhearts",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-04-06",
+      "displayDate": "06/04/2026",
+      "opponent": "The Persuaders",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-04-15",
+      "displayDate": "15/04/2026",
+      "opponent": "Horseshoe Belles",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-04-24",
+      "displayDate": "24/04/2026",
+      "opponent": "Pin Pounders",
+      "venue": "Away"
+    },
+    {
+      "date": "2026-04-28",
+      "displayDate": "28/04/2026",
+      "opponent": "Ligs",
+      "venue": "Home"
+    },
+    {
+      "date": "2026-05-08",
+      "displayDate": "08/05/2026",
+      "opponent": "Daleks",
+      "venue": "Away"
+    }
+  ]
+}
