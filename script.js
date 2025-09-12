@@ -414,13 +414,13 @@ function processMatch(matchData) {
     
     dashboardData.teamStats.gamesPlayed++;
     
-    // FIXED: Use correct skittles scoring - points = legs won (not 3 for a win)
-    // Calculate total points from all matches
+    // FIXED: Use correct skittles scoring - points = legs won (including decimals)
+    // Calculate total points from all matches using parseFloat to handle decimals
     let totalPoints = 0;
     dashboardData.matches.forEach(match => {
-        totalPoints += match.wanstrowMatchScore; // This is already legs won + pin bonus
+        totalPoints += parseFloat(match.wanstrowMatchScore); // Ensure decimal handling
     });
-    dashboardData.teamStats.points = totalPoints;
+    dashboardData.teamStats.points = Math.round(totalPoints * 10) / 10; // Round to 1 decimal place
     
     dashboardData.teamStats.totalPins += matchData.wanstrowTotal;
     dashboardData.teamStats.averageScore = Math.round((dashboardData.teamStats.totalPins / dashboardData.teamStats.gamesPlayed) * 10) / 10;
