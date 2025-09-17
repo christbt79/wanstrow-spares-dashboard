@@ -3,7 +3,7 @@
     "wins": 3,
     "losses": 0,
     "draws": 0,
-    "points": 19.5,
+    "points": 18.5,
     "gamesPlayed": 3,
     "totalPins": 709,
     "averageScore": 236.3
@@ -163,8 +163,8 @@
       "date": "2025-09-17",
       "opponent": "King Pins",
       "venue": "Away",
-      "wanstrowMatchScore": 7,
-      "opponentMatchScore": 1,
+      "wanstrowMatchScore": 6,
+      "opponentMatchScore": 2,
       "wanstrowTotal": 228,
       "opponentTotal": 216,
       "playerScores": {
