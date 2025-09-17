@@ -1,40 +1,43 @@
 {
   "teamStats": {
-    "wins": 2,
+    "wins": 3,
     "losses": 0,
     "draws": 0,
-    "points": 12.5,
-    "gamesPlayed": 2,
-    "totalPins": 481,
-    "averageScore": 240.5
+    "points": 19.5,
+    "gamesPlayed": 3,
+    "totalPins": 709,
+    "averageScore": 236.3
   },
   "players": {
     "Christian": {
-      "games": 2,
-      "totalPins": 83,
-      "highScore": 42,
+      "games": 3,
+      "totalPins": 137,
+      "highScore": 54,
       "scores": [
         41,
-        42
+        42,
+        54
       ],
       "form": "same"
     },
     "Keith": {
-      "games": 1,
-      "totalPins": 48,
+      "games": 2,
+      "totalPins": 91,
       "highScore": 48,
       "scores": [
-        48
+        48,
+        43
       ],
-      "form": []
+      "form": "same"
     },
     "Helen": {
-      "games": 2,
-      "totalPins": 72,
+      "games": 3,
+      "totalPins": 103,
       "highScore": 39,
       "scores": [
         33,
-        39
+        39,
+        31
       ],
       "form": "same"
     },
@@ -49,23 +52,25 @@
       "form": "same"
     },
     "Paddy": {
-      "games": 2,
-      "totalPins": 72,
+      "games": 3,
+      "totalPins": 108,
       "highScore": 39,
       "scores": [
         33,
-        39
+        39,
+        36
       ],
       "form": "same"
     },
     "Steve": {
-      "games": 1,
-      "totalPins": 42,
+      "games": 2,
+      "totalPins": 81,
       "highScore": 42,
       "scores": [
-        42
+        42,
+        39
       ],
-      "form": []
+      "form": "same"
     },
     "Adrian": {
       "games": 2,
@@ -85,10 +90,12 @@
       "form": []
     },
     "Linda": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
+      "games": 1,
+      "totalPins": 25,
+      "highScore": 25,
+      "scores": [
+        25
+      ],
       "form": []
     },
     "Margaret": {
@@ -151,12 +158,34 @@
         "Margaret": 0,
         "XYZ": 0
       }
+    },
+    {
+      "date": "2025-09-17",
+      "opponent": "King Pins",
+      "venue": "Away",
+      "wanstrowMatchScore": 7,
+      "opponentMatchScore": 1,
+      "wanstrowTotal": 228,
+      "opponentTotal": 216,
+      "playerScores": {
+        "Christian": 54,
+        "Keith": 43,
+        "Helen": 31,
+        "Martin": 0,
+        "Paddy": 36,
+        "Steve": 39,
+        "Adrian": 0,
+        "Jason": 0,
+        "Linda": 25,
+        "Margaret": 0,
+        "XYZ": 0
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "King Pins",
-    "date": "17/09/2025",
-    "venue": "Away"
+    "opponent": "Three Horseshoes",
+    "date": "25/09/2025",
+    "venue": "Home"
   },
   "fixtures": [
     {
