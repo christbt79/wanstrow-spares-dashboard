@@ -3,9 +3,9 @@
     "wins": 3,
     "losses": 3,
     "draws": 0,
-    "points": 22.5,
+    "points": 23,
     "gamesPlayed": 6,
-    "totalPins": 1428,
+    "totalPins": 1429,
     "averageScore": 238
   },
   "players": {
@@ -95,7 +95,7 @@
         37,
         47,
         40,
-        52
+        53
       ],
       "form": "up"
     },
@@ -248,8 +248,8 @@
       "date": "2025-10-08",
       "opponent": "The Tossers",
       "venue": "Home",
-      "wanstrowMatchScore": 1,
-      "opponentMatchScore": 6,
+      "wanstrowMatchScore": 1.5,
+      "opponentMatchScore": 6.5,
       "wanstrowTotal": 251,
       "opponentTotal": 257,
       "playerScores": {
@@ -259,7 +259,7 @@
         "Martin": 47,
         "Paddy": 42,
         "Steve": 0,
-        "Adrian": 52,
+        "Adrian": 53,
         "Jason": 34,
         "Linda": 0,
         "Margaret": 0,
