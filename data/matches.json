@@ -1,23 +1,24 @@
 {
   "teamStats": {
     "wins": 3,
-    "losses": 2,
+    "losses": 3,
     "draws": 0,
-    "points": 21.5,
-    "gamesPlayed": 5,
-    "totalPins": 1177,
-    "averageScore": 235.4
+    "points": 22.5,
+    "gamesPlayed": 6,
+    "totalPins": 1428,
+    "averageScore": 238
   },
   "players": {
     "Christian": {
-      "games": 4,
-      "totalPins": 176,
+      "games": 5,
+      "totalPins": 218,
       "highScore": 54,
       "scores": [
         41,
         42,
         54,
-        39
+        39,
+        42
       ],
       "form": "up"
     },
@@ -34,41 +35,44 @@
       "form": "down"
     },
     "Helen": {
-      "games": 5,
-      "totalPins": 167,
+      "games": 6,
+      "totalPins": 200,
       "highScore": 39,
       "scores": [
         33,
         39,
         31,
         39,
-        25
+        25,
+        33
       ],
       "form": "down"
     },
     "Martin": {
-      "games": 3,
-      "totalPins": 122,
-      "highScore": 44,
+      "games": 4,
+      "totalPins": 169,
+      "highScore": 47,
       "scores": [
         44,
         39,
-        39
+        39,
+        47
       ],
-      "form": "same"
+      "form": "down"
     },
     "Paddy": {
-      "games": 5,
-      "totalPins": 176,
+      "games": 6,
+      "totalPins": 218,
       "highScore": 43,
       "scores": [
         33,
         39,
         36,
         25,
-        43
+        43,
+        42
       ],
-      "form": "down"
+      "form": "up"
     },
     "Steve": {
       "games": 4,
@@ -83,22 +87,25 @@
       "form": "up"
     },
     "Adrian": {
-      "games": 4,
-      "totalPins": 168,
-      "highScore": 47,
+      "games": 5,
+      "totalPins": 220,
+      "highScore": 52,
       "scores": [
         44,
         37,
         47,
-        40
+        40,
+        52
       ],
-      "form": "down"
+      "form": "up"
     },
     "Jason": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
+      "games": 1,
+      "totalPins": 34,
+      "highScore": 34,
+      "scores": [
+        34
+      ],
       "form": []
     },
     "Linda": {
@@ -236,12 +243,34 @@
         "Margaret": 0,
         "XYZ": 0
       }
+    },
+    {
+      "date": "2025-10-08",
+      "opponent": "The Tossers",
+      "venue": "Home",
+      "wanstrowMatchScore": 1,
+      "opponentMatchScore": 6,
+      "wanstrowTotal": 251,
+      "opponentTotal": 257,
+      "playerScores": {
+        "Christian": 42,
+        "Keith": 0,
+        "Helen": 33,
+        "Martin": 47,
+        "Paddy": 42,
+        "Steve": 0,
+        "Adrian": 52,
+        "Jason": 34,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "The Tossers",
-    "date": "08/10/2025",
-    "venue": "Home"
+    "opponent": "Double Ds",
+    "date": "16/10/2025",
+    "venue": "Away"
   },
   "fixtures": [
     {
