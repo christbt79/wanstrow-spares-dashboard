@@ -360,8 +360,8 @@ function handleMatchSubmit(e) {
         date: document.getElementById('match-date').value,
         opponent: document.getElementById('opponent').value,
         venue: document.getElementById('venue').value,
-        wanstrowMatchScore: parseInt(document.getElementById('wanstrow-match-score').value),
-        opponentMatchScore: parseInt(document.getElementById('opponent-match-score').value),
+        wanstrowMatchScore: parseFloat(document.getElementById('wanstrow-match-score').value),
+        opponentMatchScore: parseFloat(document.getElementById('opponent-match-score').value),
         wanstrowTotal: parseInt(document.getElementById('wanstrow-total').value),
         opponentTotal: parseInt(document.getElementById('opponent-total').value),
         playerScores: {}
