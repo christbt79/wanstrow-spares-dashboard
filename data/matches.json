@@ -5,8 +5,8 @@
     "draws": 0,
     "points": 32,
     "gamesPlayed": 8,
-    "totalPins": 1920,
-    "averageScore": 240
+    "totalPins": 1929,
+    "averageScore": 241
   },
   "players": {
     "Christian": {
@@ -306,7 +306,7 @@
       "venue": "Home",
       "wanstrowMatchScore": 7,
       "opponentMatchScore": 1,
-      "wanstrowTotal": 252,
+      "wanstrowTotal": 262,
       "opponentTotal": 231,
       "playerScores": {
         "Christian": 46,
