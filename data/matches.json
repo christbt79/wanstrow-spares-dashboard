@@ -1,12 +1,12 @@
 {
   "teamStats": {
     "wins": 4,
-    "losses": 4,
+    "losses": 5,
     "draws": 0,
     "points": 32,
-    "gamesPlayed": 8,
-    "totalPins": 1929,
-    "averageScore": 241
+    "gamesPlayed": 9,
+    "totalPins": 2149,
+    "averageScore": 238.8
   },
   "players": {
     "Christian": {
@@ -25,8 +25,8 @@
       "form": "up"
     },
     "Keith": {
-      "games": 6,
-      "totalPins": 249,
+      "games": 7,
+      "totalPins": 286,
       "highScore": 48,
       "scores": [
         48,
@@ -34,13 +34,14 @@
         43,
         35,
         38,
-        42
+        42,
+        37
       ],
       "form": "down"
     },
     "Helen": {
-      "games": 6,
-      "totalPins": 200,
+      "games": 7,
+      "totalPins": 231,
       "highScore": 39,
       "scores": [
         33,
@@ -48,7 +49,8 @@
         31,
         39,
         25,
-        33
+        33,
+        31
       ],
       "form": "down"
     },
@@ -67,8 +69,8 @@
       "form": "up"
     },
     "Paddy": {
-      "games": 7,
-      "totalPins": 251,
+      "games": 8,
+      "totalPins": 285,
       "highScore": 43,
       "scores": [
         33,
@@ -77,26 +79,28 @@
         25,
         43,
         42,
-        33
+        33,
+        34
       ],
       "form": "up"
     },
     "Steve": {
-      "games": 5,
-      "totalPins": 211,
+      "games": 6,
+      "totalPins": 247,
       "highScore": 46,
       "scores": [
         42,
         39,
         45,
         46,
-        39
+        39,
+        36
       ],
-      "form": "up"
+      "form": "down"
     },
     "Adrian": {
-      "games": 7,
-      "totalPins": 297,
+      "games": 8,
+      "totalPins": 340,
       "highScore": 53,
       "scores": [
         44,
@@ -105,9 +109,10 @@
         40,
         53,
         32,
-        44
+        44,
+        43
       ],
-      "form": "up"
+      "form": "down"
     },
     "Jason": {
       "games": 3,
@@ -143,6 +148,15 @@
       "scores": [],
       "form": [],
       "isHandicap": true
+    },
+    "Ben": {
+      "games": 1,
+      "totalPins": 39,
+      "highScore": 39,
+      "scores": [
+        39
+      ],
+      "form": []
     }
   },
   "matches": [
@@ -321,12 +335,35 @@
         "Margaret": 0,
         "XYZ": 0
       }
+    },
+    {
+      "date": "2025-10-30",
+      "opponent": "Deep In Cider",
+      "venue": "Away",
+      "wanstrowMatchScore": 0,
+      "opponentMatchScore": 8,
+      "wanstrowTotal": 220,
+      "opponentTotal": 277,
+      "playerScores": {
+        "Christian": 0,
+        "Keith": 37,
+        "Helen": 31,
+        "Martin": 0,
+        "Paddy": 34,
+        "Steve": 36,
+        "Adrian": 43,
+        "Jason": 0,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 39
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "Deep in Cider",
-    "date": "30/10/2025",
-    "venue": "Away"
+    "opponent": "All 3 Holes",
+    "date": "07/11/2025",
+    "venue": "Home"
   },
   "fixtures": [
     {
