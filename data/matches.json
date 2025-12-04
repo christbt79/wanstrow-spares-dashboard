@@ -1,18 +1,18 @@
 {
   "teamStats": {
-    "wins": 7,
+    "wins": 8,
     "losses": 6,
     "draws": 0,
-    "points": 52,
-    "gamesPlayed": 13,
-    "totalPins": 3108,
-    "averageScore": 239.1
+    "points": 59,
+    "gamesPlayed": 14,
+    "totalPins": 3354,
+    "averageScore": 239.6
   },
   "players": {
     "Christian": {
-      "games": 10,
-      "totalPins": 444,
-      "highScore": 54,
+      "games": 11,
+      "totalPins": 499,
+      "highScore": 55,
       "scores": [
         41,
         42,
@@ -23,13 +23,14 @@
         46,
         41,
         47,
-        41
+        41,
+        55
       ],
-      "form": "down"
+      "form": "up"
     },
     "Keith": {
-      "games": 10,
-      "totalPins": 427,
+      "games": 11,
+      "totalPins": 462,
       "highScore": 51,
       "scores": [
         48,
@@ -41,13 +42,14 @@
         37,
         45,
         51,
-        45
+        45,
+        35
       ],
       "form": "up"
     },
     "Helen": {
-      "games": 9,
-      "totalPins": 318,
+      "games": 10,
+      "totalPins": 351,
       "highScore": 46,
       "scores": [
         33,
@@ -58,7 +60,8 @@
         33,
         31,
         41,
-        46
+        46,
+        33
       ],
       "form": "up"
     },
@@ -79,8 +82,8 @@
       "form": "same"
     },
     "Paddy": {
-      "games": 11,
-      "totalPins": 404,
+      "games": 12,
+      "totalPins": 437,
       "highScore": 45,
       "scores": [
         33,
@@ -93,13 +96,14 @@
         34,
         33,
         45,
-        41
+        41,
+        33
       ],
       "form": "up"
     },
     "Steve": {
-      "games": 9,
-      "totalPins": 365,
+      "games": 10,
+      "totalPins": 410,
       "highScore": 46,
       "scores": [
         42,
@@ -110,13 +114,14 @@
         36,
         39,
         37,
-        42
+        42,
+        45
       ],
-      "form": "down"
+      "form": "up"
     },
     "Adrian": {
-      "games": 9,
-      "totalPins": 379,
+      "games": 10,
+      "totalPins": 424,
       "highScore": 53,
       "scores": [
         44,
@@ -127,7 +132,8 @@
         32,
         44,
         43,
-        39
+        39,
+        45
       ],
       "form": "down"
     },
@@ -474,12 +480,35 @@
         "XYZ": 0,
         "Ben": 0
       }
+    },
+    {
+      "date": "2025-12-03",
+      "opponent": "Horseshoe Belles",
+      "venue": "Away",
+      "wanstrowMatchScore": 7,
+      "opponentMatchScore": 1,
+      "wanstrowTotal": 246,
+      "opponentTotal": 217,
+      "playerScores": {
+        "Christian": 55,
+        "Keith": 35,
+        "Helen": 33,
+        "Martin": 0,
+        "Paddy": 33,
+        "Steve": 45,
+        "Adrian": 45,
+        "Jason": 0,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 0
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "Horseshoe Belles",
-    "date": "03/12/2025",
-    "venue": "Away"
+    "opponent": "Pin Pounders",
+    "date": "12/12/2025",
+    "venue": "Home"
   },
   "fixtures": [
     {
