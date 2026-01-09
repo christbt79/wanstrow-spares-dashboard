@@ -1,17 +1,17 @@
 {
   "teamStats": {
     "wins": 8,
-    "losses": 8,
+    "losses": 9,
     "draws": 0,
-    "points": 61.5,
-    "gamesPlayed": 16,
-    "totalPins": 3795,
-    "averageScore": 237.2
+    "points": 63.5,
+    "gamesPlayed": 17,
+    "totalPins": 4034,
+    "averageScore": 237.3
   },
   "players": {
     "Christian": {
-      "games": 11,
-      "totalPins": 499,
+      "games": 12,
+      "totalPins": 543,
       "highScore": 55,
       "scores": [
         41,
@@ -24,13 +24,14 @@
         41,
         47,
         41,
-        55
+        55,
+        44
       ],
       "form": "up"
     },
     "Keith": {
-      "games": 12,
-      "totalPins": 493,
+      "games": 13,
+      "totalPins": 528,
       "highScore": 51,
       "scores": [
         48,
@@ -44,7 +45,8 @@
         51,
         45,
         35,
-        31
+        31,
+        35
       ],
       "form": "down"
     },
@@ -107,8 +109,8 @@
       "form": "up"
     },
     "Steve": {
-      "games": 12,
-      "totalPins": 493,
+      "games": 13,
+      "totalPins": 532,
       "highScore": 46,
       "scores": [
         42,
@@ -122,13 +124,14 @@
         42,
         45,
         42,
-        41
+        41,
+        39
       ],
-      "form": "up"
+      "form": "down"
     },
     "Adrian": {
-      "games": 12,
-      "totalPins": 510,
+      "games": 13,
+      "totalPins": 560,
       "highScore": 53,
       "scores": [
         44,
@@ -142,13 +145,14 @@
         39,
         45,
         43,
-        43
+        43,
+        50
       ],
       "form": "up"
     },
     "Jason": {
-      "games": 9,
-      "totalPins": 371,
+      "games": 10,
+      "totalPins": 412,
       "highScore": 49,
       "scores": [
         34,
@@ -159,19 +163,21 @@
         43,
         33,
         43,
+        41,
         41
       ],
-      "form": "down"
+      "form": "up"
     },
     "Linda": {
-      "games": 4,
-      "totalPins": 90,
-      "highScore": 25,
+      "games": 5,
+      "totalPins": 117,
+      "highScore": 27,
       "scores": [
         25,
         25,
         20,
-        20
+        20,
+        27
       ],
       "form": "down"
     },
@@ -561,11 +567,34 @@
         "XYZ": 0,
         "Ben": 0
       }
+    },
+    {
+      "date": "2026-01-09",
+      "opponent": "Daleks",
+      "venue": "Home",
+      "wanstrowMatchScore": 2,
+      "opponentMatchScore": 6,
+      "wanstrowTotal": 239,
+      "opponentTotal": 241,
+      "playerScores": {
+        "Christian": 44,
+        "Keith": 35,
+        "Helen": 0,
+        "Martin": 0,
+        "Paddy": 0,
+        "Steve": 39,
+        "Adrian": 50,
+        "Jason": 41,
+        "Linda": 27,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 0
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "Daleks",
-    "date": "09/01/2026",
+    "opponent": "Barrow Boys",
+    "date": "13/01/2026",
     "venue": "Home"
   },
   "fixtures": [
