@@ -1,17 +1,17 @@
 {
   "teamStats": {
-    "wins": 10,
+    "wins": 11,
     "losses": 9,
     "draws": 0,
-    "points": 77.5,
-    "gamesPlayed": 19,
-    "totalPins": 4539,
-    "averageScore": 238.9
+    "points": 82.5,
+    "gamesPlayed": 20,
+    "totalPins": 4764,
+    "averageScore": 238.2
   },
   "players": {
     "Christian": {
-      "games": 14,
-      "totalPins": 631,
+      "games": 15,
+      "totalPins": 667,
       "highScore": 55,
       "scores": [
         41,
@@ -27,13 +27,14 @@
         55,
         44,
         43,
-        45
+        45,
+        36
       ],
       "form": "down"
     },
     "Keith": {
-      "games": 14,
-      "totalPins": 563,
+      "games": 15,
+      "totalPins": 597,
       "highScore": 51,
       "scores": [
         48,
@@ -49,13 +50,14 @@
         35,
         31,
         35,
-        35
+        35,
+        34
       ],
       "form": "down"
     },
     "Helen": {
-      "games": 12,
-      "totalPins": 411,
+      "games": 13,
+      "totalPins": 441,
       "highScore": 46,
       "scores": [
         33,
@@ -69,7 +71,8 @@
         46,
         33,
         33,
-        27
+        27,
+        30
       ],
       "form": "down"
     },
@@ -116,8 +119,8 @@
       "form": "up"
     },
     "Steve": {
-      "games": 14,
-      "totalPins": 576,
+      "games": 15,
+      "totalPins": 622,
       "highScore": 46,
       "scores": [
         42,
@@ -133,7 +136,8 @@
         42,
         41,
         39,
-        44
+        44,
+        46
       ],
       "form": "up"
     },
@@ -160,9 +164,9 @@
       "form": "up"
     },
     "Jason": {
-      "games": 12,
-      "totalPins": 493,
-      "highScore": 49,
+      "games": 13,
+      "totalPins": 543,
+      "highScore": 50,
       "scores": [
         34,
         49,
@@ -175,22 +179,24 @@
         41,
         41,
         42,
-        39
+        39,
+        50
       ],
-      "form": "down"
+      "form": "up"
     },
     "Linda": {
-      "games": 5,
-      "totalPins": 117,
-      "highScore": 27,
+      "games": 6,
+      "totalPins": 146,
+      "highScore": 29,
       "scores": [
         25,
         25,
         20,
         20,
-        27
+        27,
+        29
       ],
-      "form": "down"
+      "form": "up"
     },
     "Margaret": {
       "games": 0,
@@ -648,12 +654,35 @@
         "XYZ": 0,
         "Ben": 47
       }
+    },
+    {
+      "date": "2026-01-28",
+      "opponent": "King Pins",
+      "venue": "Home",
+      "wanstrowMatchScore": 5,
+      "opponentMatchScore": 3,
+      "wanstrowTotal": 225,
+      "opponentTotal": 221,
+      "playerScores": {
+        "Christian": 36,
+        "Keith": 34,
+        "Helen": 30,
+        "Martin": 0,
+        "Paddy": 0,
+        "Steve": 46,
+        "Adrian": 0,
+        "Jason": 50,
+        "Linda": 29,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 0
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "King Pins",
-    "date": "28/01/2026",
-    "venue": "Home"
+    "opponent": "Three Horseshoes",
+    "date": "05/02/2026",
+    "venue": "Away"
   },
   "fixtures": [
     {
