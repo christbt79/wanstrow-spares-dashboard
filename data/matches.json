@@ -1,17 +1,17 @@
 {
   "teamStats": {
     "wins": 13,
-    "losses": 11,
+    "losses": 12,
     "draws": 0,
-    "points": 99,
-    "gamesPlayed": 24,
-    "totalPins": 5721,
-    "averageScore": 238.4
+    "points": 101,
+    "gamesPlayed": 25,
+    "totalPins": 5953,
+    "averageScore": 238.1
   },
   "players": {
     "Christian": {
-      "games": 17,
-      "totalPins": 755,
+      "games": 18,
+      "totalPins": 804,
       "highScore": 55,
       "scores": [
         41,
@@ -30,13 +30,14 @@
         45,
         36,
         46,
-        42
+        42,
+        49
       ],
-      "form": "down"
+      "form": "up"
     },
     "Keith": {
-      "games": 17,
-      "totalPins": 688,
+      "games": 18,
+      "totalPins": 731,
       "highScore": 51,
       "scores": [
         48,
@@ -55,7 +56,8 @@
         35,
         34,
         50,
-        41
+        41,
+        43
       ],
       "form": "up"
     },
@@ -84,8 +86,8 @@
       "form": "down"
     },
     "Martin": {
-      "games": 13,
-      "totalPins": 548,
+      "games": 14,
+      "totalPins": 586,
       "highScore": 48,
       "scores": [
         44,
@@ -100,13 +102,14 @@
         48,
         45,
         42,
-        42
+        42,
+        38
       ],
-      "form": "up"
+      "form": "down"
     },
     "Paddy": {
-      "games": 19,
-      "totalPins": 728,
+      "games": 20,
+      "totalPins": 760,
       "highScore": 47,
       "scores": [
         33,
@@ -127,7 +130,8 @@
         35,
         46,
         38,
-        47
+        47,
+        32
       ],
       "form": "up"
     },
@@ -158,8 +162,8 @@
       "form": "down"
     },
     "Adrian": {
-      "games": 18,
-      "totalPins": 766,
+      "games": 19,
+      "totalPins": 801,
       "highScore": 53,
       "scores": [
         44,
@@ -179,7 +183,8 @@
         46,
         38,
         41,
-        42
+        42,
+        35
       ],
       "form": "down"
     },
@@ -247,6 +252,15 @@
         30
       ],
       "form": "up"
+    },
+    "Teresa": {
+      "games": 1,
+      "totalPins": 35,
+      "highScore": 35,
+      "scores": [
+        35
+      ],
+      "form": []
     }
   },
   "matches": [
@@ -793,12 +807,36 @@
         "XYZ": 0,
         "Ben": 0
       }
+    },
+    {
+      "date": "2026-03-27",
+      "opponent": "Allsorts",
+      "venue": "Home",
+      "wanstrowMatchScore": 2,
+      "opponentMatchScore": 6,
+      "wanstrowTotal": 232,
+      "opponentTotal": 243,
+      "playerScores": {
+        "Christian": 49,
+        "Keith": 43,
+        "Helen": 0,
+        "Martin": 38,
+        "Paddy": 32,
+        "Steve": 0,
+        "Adrian": 35,
+        "Jason": 0,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 0,
+        "Teresa": 35
+      }
     }
   ],
   "nextFixture": {
-    "opponent": "Allsorts",
-    "date": "27/03/2026",
-    "venue": "Home"
+    "opponent": "Lionhearts",
+    "date": "31/03/2026",
+    "venue": "Away"
   },
   "fixtures": [
     {
