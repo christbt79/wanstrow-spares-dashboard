@@ -1,17 +1,17 @@
 {
   "teamStats": {
-    "wins": 17,
+    "wins": 18,
     "losses": 13,
     "draws": 0,
-    "points": 131,
-    "gamesPlayed": 30,
-    "totalPins": 7162,
-    "averageScore": 238.7
+    "points": 136,
+    "gamesPlayed": 31,
+    "totalPins": 7405,
+    "averageScore": 238.9
   },
   "players": {
     "Christian": {
-      "games": 23,
-      "totalPins": 1012,
+      "games": 24,
+      "totalPins": 1051,
       "highScore": 55,
       "scores": [
         41,
@@ -36,13 +36,14 @@
         38,
         44,
         37,
-        38
+        38,
+        39
       ],
       "form": "down"
     },
     "Keith": {
-      "games": 23,
-      "totalPins": 936,
+      "games": 24,
+      "totalPins": 978,
       "highScore": 51,
       "scores": [
         48,
@@ -67,9 +68,10 @@
         37,
         33,
         49,
-        36
+        36,
+        42
       ],
-      "form": "down"
+      "form": "up"
     },
     "Helen": {
       "games": 16,
@@ -96,8 +98,8 @@
       "form": "down"
     },
     "Martin": {
-      "games": 19,
-      "totalPins": 798,
+      "games": 20,
+      "totalPins": 844,
       "highScore": 53,
       "scores": [
         44,
@@ -118,13 +120,14 @@
         53,
         41,
         37,
+        46,
         46
       ],
-      "form": "down"
+      "form": "up"
     },
     "Paddy": {
-      "games": 25,
-      "totalPins": 946,
+      "games": 26,
+      "totalPins": 987,
       "highScore": 47,
       "scores": [
         33,
@@ -151,13 +154,14 @@
         34,
         34,
         43,
-        32
+        32,
+        41
       ],
-      "form": "down"
+      "form": "up"
     },
     "Steve": {
-      "games": 22,
-      "totalPins": 902,
+      "games": 23,
+      "totalPins": 940,
       "highScore": 48,
       "scores": [
         42,
@@ -181,7 +185,8 @@
         45,
         36,
         32,
-        48
+        48,
+        38
       ],
       "form": "down"
     },
@@ -217,8 +222,8 @@
       "form": "down"
     },
     "Jason": {
-      "games": 15,
-      "totalPins": 620,
+      "games": 16,
+      "totalPins": 655,
       "highScore": 50,
       "scores": [
         34,
@@ -235,9 +240,10 @@
         39,
         50,
         39,
-        38
+        38,
+        35
       ],
-      "form": "up"
+      "form": "down"
     },
     "Linda": {
       "games": 7,
@@ -980,6 +986,30 @@
         "XYZ": 0,
         "Ben": 0,
         "Teresa": 27
+      }
+    },
+    {
+      "date": "2026-05-08",
+      "opponent": "Daleks",
+      "venue": "Away",
+      "wanstrowMatchScore": 5,
+      "opponentMatchScore": 3,
+      "wanstrowTotal": 243,
+      "opponentTotal": 232,
+      "playerScores": {
+        "Christian": 39,
+        "Keith": 42,
+        "Helen": 0,
+        "Martin": 46,
+        "Paddy": 41,
+        "Steve": 38,
+        "Adrian": 0,
+        "Jason": 35,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 0,
+        "Teresa": 0
       }
     }
   ],
