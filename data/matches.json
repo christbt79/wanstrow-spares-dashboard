@@ -1,17 +1,17 @@
 {
   "teamStats": {
-    "wins": 18,
+    "wins": 19,
     "losses": 13,
     "draws": 0,
-    "points": 136,
-    "gamesPlayed": 31,
-    "totalPins": 7405,
-    "averageScore": 238.9
+    "points": 141.5,
+    "gamesPlayed": 32,
+    "totalPins": 7630,
+    "averageScore": 238.4
   },
   "players": {
     "Christian": {
-      "games": 24,
-      "totalPins": 1051,
+      "games": 25,
+      "totalPins": 1095,
       "highScore": 55,
       "scores": [
         41,
@@ -37,13 +37,14 @@
         44,
         37,
         38,
-        39
+        39,
+        44
       ],
       "form": "down"
     },
     "Keith": {
-      "games": 24,
-      "totalPins": 978,
+      "games": 25,
+      "totalPins": 1017,
       "highScore": 51,
       "scores": [
         48,
@@ -69,9 +70,10 @@
         33,
         49,
         36,
-        42
+        42,
+        39
       ],
-      "form": "up"
+      "form": "down"
     },
     "Helen": {
       "games": 16,
@@ -98,8 +100,8 @@
       "form": "down"
     },
     "Martin": {
-      "games": 20,
-      "totalPins": 844,
+      "games": 21,
+      "totalPins": 885,
       "highScore": 53,
       "scores": [
         44,
@@ -121,13 +123,14 @@
         41,
         37,
         46,
-        46
+        46,
+        41
       ],
       "form": "up"
     },
     "Paddy": {
-      "games": 26,
-      "totalPins": 987,
+      "games": 27,
+      "totalPins": 1027,
       "highScore": 47,
       "scores": [
         33,
@@ -155,13 +158,14 @@
         34,
         43,
         32,
-        41
+        41,
+        40
       ],
-      "form": "up"
+      "form": "down"
     },
     "Steve": {
-      "games": 23,
-      "totalPins": 940,
+      "games": 24,
+      "totalPins": 977,
       "highScore": 48,
       "scores": [
         42,
@@ -186,13 +190,14 @@
         36,
         32,
         48,
-        38
+        38,
+        37
       ],
-      "form": "down"
+      "form": "up"
     },
     "Adrian": {
-      "games": 23,
-      "totalPins": 976,
+      "games": 24,
+      "totalPins": 1010,
       "highScore": 53,
       "scores": [
         44,
@@ -217,7 +222,8 @@
         51,
         44,
         41,
-        39
+        39,
+        34
       ],
       "form": "down"
     },
@@ -1005,6 +1011,30 @@
         "Steve": 38,
         "Adrian": 0,
         "Jason": 35,
+        "Linda": 0,
+        "Margaret": 0,
+        "XYZ": 0,
+        "Ben": 0,
+        "Teresa": 0
+      }
+    },
+    {
+      "date": "2026-05-13",
+      "opponent": "Balls Deep",
+      "venue": "Home",
+      "wanstrowMatchScore": 5.5,
+      "opponentMatchScore": 2.5,
+      "wanstrowTotal": 225,
+      "opponentTotal": 221,
+      "playerScores": {
+        "Christian": 44,
+        "Keith": 39,
+        "Helen": 0,
+        "Martin": 41,
+        "Paddy": 40,
+        "Steve": 37,
+        "Adrian": 34,
+        "Jason": 0,
         "Linda": 0,
         "Margaret": 0,
         "XYZ": 0,
