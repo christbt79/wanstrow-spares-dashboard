@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadData();
     setupEventListeners();
     updateAllDisplays();
+    switchTab('overview');
 });
 
 // Load data
@@ -162,15 +163,37 @@ function handleAdminLogin() {
 function updateSeasonSelector() {
     const select = document.getElementById('season-select');
     if (!select) return;
-    
-    const seasons = Object.keys(dashboardData.seasons).sort().reverse();
-    select.innerHTML = seasons.map(s => 
+
+    // Always include known seasons even if not yet fetched
+    const knownSeasons = ['2025-26', '2026-27'];
+    const allSeasons = [...new Set([...knownSeasons, ...Object.keys(dashboardData.seasons)])].sort().reverse();
+
+    select.innerHTML = allSeasons.map(s =>
         `<option value="${s}" ${s === dashboardData.currentSeason ? 'selected' : ''}>${s.replace('-', '/')}</option>`
     ).join('');
 }
 
-function handleSeasonChange(e) {
-    dashboardData.currentSeason = e.target.value;
+async function handleSeasonChange(e) {
+    const selectedSeason = e.target.value;
+
+    // If we don't have this season's data yet, fetch it from GitHub
+    if (!dashboardData.seasons[selectedSeason]) {
+        try {
+            const response = await fetch(`./data/${selectedSeason}.json`);
+            if (response.ok) {
+                dashboardData.seasons[selectedSeason] = await response.json();
+                console.log(`Loaded ${selectedSeason} from GitHub`);
+            } else {
+                alert(`Could not load data for ${selectedSeason} — file not found.`);
+                return;
+            }
+        } catch (err) {
+            alert(`Error loading ${selectedSeason}: ${err.message}`);
+            return;
+        }
+    }
+
+    dashboardData.currentSeason = selectedSeason;
     updateAllDisplays();
     saveData();
 }
