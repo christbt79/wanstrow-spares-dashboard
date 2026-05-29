@@ -266,16 +266,36 @@ function uploadFixtures() {
     lines.forEach(line => {
         const parts = line.split(',').map(p => p.trim());
         if (parts.length >= 3) {
-            const [date, opponent, venue, time] = parts;
-            const dateObj = new Date(date);
-            const displayDate = dateObj.toLocaleDateString('en-GB').split('/').reverse().join('/');
-            
+            const [rawDate, opponent, venue, rawTime] = parts;
+
+            // Accept DD/MM/YYYY or YYYY-MM-DD
+            let isoDate;
+            if (rawDate.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+                const [d, m, y] = rawDate.split('/');
+                isoDate = `${y}-${m}-${d}`;
+            } else {
+                isoDate = rawDate;
+            }
+            const dateObj = new Date(isoDate);
+            const displayDate = dateObj.toLocaleDateString('en-GB');
+
+            // Accept Early/Late or HH:MM (20:30+ = Late, before = Early)
+            let timeLabel = 'Early';
+            if (rawTime) {
+                if (rawTime === 'Early' || rawTime === 'Late') {
+                    timeLabel = rawTime;
+                } else if (rawTime.match(/^\d{2}:\d{2}$/)) {
+                    const [h, m] = rawTime.split(':').map(Number);
+                    timeLabel = (h > 20 || (h === 20 && m >= 30)) ? 'Late' : 'Early';
+                }
+            }
+
             fixtures.push({
-                date: date,
-                displayDate: displayDate.split('/').reverse().join('/'),
+                date: isoDate,
+                displayDate: displayDate,
                 opponent: opponent,
                 venue: venue,
-                time: time || 'TBD' // Default to TBD if time not provided
+                time: timeLabel
             });
             uniqueOpponents.add(opponent);
         }
@@ -363,11 +383,18 @@ function removePlayer() {
 function updateRemovePlayerOptions() {
     const select = document.getElementById('remove-player-select');
     if (!select) return;
-    
+
     const season = getCurrentSeasonData();
-    const players = Object.keys(season.players).filter(name => name !== 'XYZ');
-    select.innerHTML = '<option value="">Select player...</option>' +
-        players.map(p => `<option value="${p}">${p}</option>`).join('');
+    const players = season.players
+        ? Object.keys(season.players).filter(name => name !== 'XYZ')
+        : [];
+
+    if (players.length === 0) {
+        select.innerHTML = '<option value="">No players in this season</option>';
+    } else {
+        select.innerHTML = '<option value="">Select player...</option>' +
+            players.map(p => `<option value="${p}">${p}</option>`).join('');
+    }
 }
 
 function populatePlayerInputs() {
