@@ -923,8 +923,8 @@ body {
     }
 
     .team-logo {
-        width: 90px;
-        height: 90px;
+        width: 120px;
+        height: 120px;
     }
 
     .team-details h1 {
@@ -938,6 +938,19 @@ body {
     .tab-btn {
         font-size: 0.9rem;
         padding: 0.75rem 1rem;
+    }
+
+    .admin-login-btn {
+        padding: 0.5rem 0.65rem;
+        font-size: 0;
+        gap: 0;
+        border-width: 1.5px;
+        border-radius: 8px;
+        align-self: center;
+    }
+
+    .admin-login-btn i {
+        font-size: 1rem;
     }
 
     .stats-grid {
