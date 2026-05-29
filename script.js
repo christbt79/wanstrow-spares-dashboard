@@ -1,212 +1,137 @@
-// Dashboard Data Storage
+// Enhanced Dashboard Data Structure
 let dashboardData = {
-    teamStats: {
-        wins: 0,
-        losses: 0,
-        draws: 0,
-        points: 0,
-        gamesPlayed: 0,
-        totalPins: 0,
-        averageScore: 0
-    },
-    players: {
-        Christian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Keith: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Helen: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Martin: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Paddy: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Steve: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Adrian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Jason: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Linda: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        Margaret: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-        XYZ: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [], isHandicap: true }
-    },
-    matches: [],
-    nextFixture: {
-        opponent: 'Dangerous Damsels',
-        date: '10/09/2025',
-        venue: 'Home'
-    },
-    fixtures: [
-        { date: "2025-09-02", displayDate: "02/09/2025", opponent: "Barrow Boys", venue: "Away" },
-        { date: "2025-09-10", displayDate: "10/09/2025", opponent: "Dangerous Damsels", venue: "Home" },
-        { date: "2025-09-17", displayDate: "17/09/2025", opponent: "King Pins", venue: "Away" },
-        { date: "2025-09-25", displayDate: "25/09/2025", opponent: "Three Horseshoes", venue: "Home" },
-        { date: "2025-10-01", displayDate: "01/10/2025", opponent: "Balls Deep", venue: "Away" },
-        { date: "2025-10-08", displayDate: "08/10/2025", opponent: "The Tossers", venue: "Home" },
-        { date: "2025-10-16", displayDate: "16/10/2025", opponent: "Double Ds", venue: "Away" },
-        { date: "2025-10-20", displayDate: "20/10/2025", opponent: "Bridge Hill Mob", venue: "Home" },
-        { date: "2025-10-30", displayDate: "30/10/2025", opponent: "Deep in Cider", venue: "Away" },
-        { date: "2025-11-07", displayDate: "07/11/2025", opponent: "All 3 Holes", venue: "Home" },
-        { date: "2025-11-14", displayDate: "14/11/2025", opponent: "Allsorts", venue: "Away" },
-        { date: "2025-11-18", displayDate: "18/11/2025", opponent: "Lionhearts", venue: "Home" },
-        { date: "2025-11-24", displayDate: "24/11/2025", opponent: "The Persuaders", venue: "Away" },
-        { date: "2025-12-03", displayDate: "03/12/2025", opponent: "Horseshoe Belles", venue: "Away" },
-        { date: "2025-12-12", displayDate: "12/12/2025", opponent: "Pin Pounders", venue: "Home" },
-        { date: "2025-12-16", displayDate: "16/12/2025", opponent: "Ligs", venue: "Away" },
-        { date: "2026-01-09", displayDate: "09/01/2026", opponent: "Daleks", venue: "Home" },
-        { date: "2026-01-13", displayDate: "13/01/2026", opponent: "Barrow Boys", venue: "Home" },
-        { date: "2026-01-22", displayDate: "22/01/2026", opponent: "Dangerous Damsels", venue: "Away" },
-        { date: "2026-01-28", displayDate: "28/01/2026", opponent: "King Pins", venue: "Home" },
-        { date: "2026-02-05", displayDate: "05/02/2026", opponent: "Three Horseshoes", venue: "Away" },
-        { date: "2026-02-11", displayDate: "11/02/2026", opponent: "Balls Deep", venue: "Home" },
-        { date: "2026-02-18", displayDate: "18/02/2026", opponent: "The Tossers", venue: "Away" },
-        { date: "2026-02-26", displayDate: "26/02/2026", opponent: "Double Ds", venue: "Home" },
-        { date: "2026-03-02", displayDate: "02/03/2026", opponent: "Bridge Hill Mob", venue: "Away" },
-        { date: "2026-03-12", displayDate: "12/03/2026", opponent: "Deep in Cider", venue: "Home" },
-        { date: "2026-03-20", displayDate: "20/03/2026", opponent: "All 3 Holes", venue: "Away" },
-        { date: "2026-03-27", displayDate: "27/03/2026", opponent: "Allsorts", venue: "Home" },
-        { date: "2026-03-31", displayDate: "31/03/2026", opponent: "Lionhearts", venue: "Away" },
-        { date: "2026-04-06", displayDate: "06/04/2026", opponent: "The Persuaders", venue: "Home" },
-        { date: "2026-04-15", displayDate: "15/04/2026", opponent: "Horseshoe Belles", venue: "Home" },
-        { date: "2026-04-24", displayDate: "24/04/2026", opponent: "Pin Pounders", venue: "Away" },
-        { date: "2026-04-28", displayDate: "28/04/2026", opponent: "Ligs", venue: "Home" },
-        { date: "2026-05-08", displayDate: "08/05/2026", opponent: "Daleks", venue: "Away" }
-    ]
+    currentSeason: '2026-27',
+    seasons: {
+        '2026-27': {
+            teamStats: { wins: 0, losses: 0, draws: 0, points: 0, gamesPlayed: 0, totalPins: 0, averageScore: 0 },
+            players: {
+                Christian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Keith: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Helen: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Martin: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Paddy: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Steve: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Adrian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Jason: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Linda: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Margaret: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                XYZ: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [], isHandicap: true }
+            },
+            matches: [],
+            fixtures: [],
+            nextFixture: { opponent: 'TBD', date: 'TBD', venue: 'TBD', time: 'TBD' }
+        }
+    }
 };
 
-// Admin settings
 const ADMIN_PASSWORD = 'WanstrowSpares2025';
 let isAdmin = false;
 
-// Initialize dashboard
+// Initialize
 document.addEventListener('DOMContentLoaded', async function() {
-    const sharedDataLoaded = await loadData();
+    await loadData();
     setupEventListeners();
-    updateDisplay();
-    updateNextFixture();
-    
-    // If shared data was loaded, force a display update after a short delay
-    if (sharedDataLoaded) {
-        setTimeout(() => {
-            updateDisplay();
-        }, 100);
-    }
+    updateAllDisplays();
 });
 
-// Load data from localStorage AND from shared data file
+// Load data
 async function loadData() {
     try {
-        // First try to load from shared data file (GitHub Pages)
-        const response = await fetch('./data/matches.json');
+        const currentSeason = dashboardData.currentSeason;
+        const response = await fetch(`./data/${currentSeason}.json`);
         if (response.ok) {
-            const sharedData = await response.json();
-            dashboardData = { ...dashboardData, ...sharedData };
-            console.log('Loaded shared data successfully');
+            const seasonData = await response.json();
+            if (!dashboardData.seasons[currentSeason]) {
+                dashboardData.seasons[currentSeason] = seasonData;
+            } else {
+                dashboardData.seasons[currentSeason] = { ...dashboardData.seasons[currentSeason], ...seasonData };
+            }
+            console.log('Loaded season data from GitHub');
+            return true;
         }
     } catch (error) {
-        console.log('No shared data found, loading from localStorage');
-        
-        // Fallback to localStorage
-        const savedData = localStorage.getItem('wanstrowSparesData');
-        if (savedData) {
-            const parsed = JSON.parse(savedData);
+        console.log('Loading from localStorage');
+        const saved = localStorage.getItem('wanstrowDashboard');
+        if (saved) {
+            const parsed = JSON.parse(saved);
             dashboardData = { ...dashboardData, ...parsed };
         }
     }
+    return false;
 }
 
-// Save data to localStorage AND generate instructions for shared update
+// Save data
 function saveData() {
-    localStorage.setItem('wanstrowSparesData', JSON.stringify(dashboardData));
-    
-    // Generate the JSON that needs to be committed to GitHub
+    localStorage.setItem('wanstrowDashboard', JSON.stringify(dashboardData));
     generateSharedDataFile();
 }
 
-// Generate shared data file content for GitHub
+// Generate shared data file
 function generateSharedDataFile() {
-    const dataToShare = JSON.stringify(dashboardData, null, 2);
-    
-    console.log('=== SHARED DATA UPDATE REQUIRED ===');
-    console.log('Copy the following JSON content and save it as data/matches.json in your GitHub repository:');
-    console.log('');
-    console.log(dataToShare);
-    console.log('');
-    console.log('=== END OF DATA ===');
-    
-    // Also show alert to user
-    if (isAdmin) {
-        setTimeout(() => {
-            alert('Match saved! To share with others:\n\n1. Create a "data" folder in your GitHub repo\n2. Create "matches.json" file in that folder\n3. Copy the JSON from browser console\n4. Commit and push to GitHub\n\nCheck browser console (F12) for the exact JSON to copy.');
-        }, 500);
-    }
+    const season = getCurrentSeasonData();
+    const jsonData = JSON.stringify(season, null, 2);
+    console.log(`=== ${dashboardData.currentSeason}.json ===`);
+    console.log(jsonData);
+    console.log('=== END ===');
+}
+
+// Get current season data
+function getCurrentSeasonData() {
+    return dashboardData.seasons[dashboardData.currentSeason] || dashboardData.seasons['2026-27'];
 }
 
 // Setup event listeners
 function setupEventListeners() {
-    // Tab switching
+    // Tabs
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
 
-    // Admin login
+    // Admin
     document.querySelector('.admin-login-btn').addEventListener('click', showAdminLogin);
     document.getElementById('login-btn').addEventListener('click', handleAdminLogin);
     document.getElementById('cancel-btn').addEventListener('click', hideAdminLogin);
-    
+    document.getElementById('admin-password').addEventListener('keypress', e => {
+        if (e.key === 'Enter') handleAdminLogin();
+    });
+
+    // Season management
+    document.getElementById('season-select')?.addEventListener('change', handleSeasonChange);
+    document.getElementById('new-season-btn')?.addEventListener('click', showNewSeasonModal);
+    document.getElementById('confirm-new-season-btn')?.addEventListener('click', startNewSeason);
+    document.getElementById('cancel-new-season-btn')?.addEventListener('click', hideNewSeasonModal);
+
+    // Fixture upload
+    document.getElementById('upload-fixtures-btn')?.addEventListener('click', uploadFixtures);
+
+    // Team management
+    document.getElementById('add-player-btn')?.addEventListener('click', addPlayer);
+    document.getElementById('remove-player-btn')?.addEventListener('click', removePlayer);
+
     // Match form
     const matchForm = document.getElementById('match-form');
     if (matchForm) {
         matchForm.addEventListener('submit', handleMatchSubmit);
     }
-    
-    // Opponent selection updates labels
+
     const opponentSelect = document.getElementById('opponent');
     if (opponentSelect) {
         opponentSelect.addEventListener('change', function() {
-            const opponentLabel = document.getElementById('opponent-match-label');
-            const totalLabel = document.getElementById('opponent-total-label');
-            if (opponentLabel) opponentLabel.textContent = this.value || 'Opponent';
-            if (totalLabel) totalLabel.textContent = this.value || 'Opponent';
-        });
-    }
-
-    // Team management
-    const addPlayerBtn = document.getElementById('add-player-btn');
-    if (addPlayerBtn) {
-        addPlayerBtn.addEventListener('click', addPlayer);
-    }
-
-    const removePlayerBtn = document.getElementById('remove-player-btn');
-    if (removePlayerBtn) {
-        removePlayerBtn.addEventListener('click', removePlayer);
-    }
-
-    // Admin password on Enter key
-    const adminPasswordInput = document.getElementById('admin-password');
-    if (adminPasswordInput) {
-        adminPasswordInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                handleAdminLogin();
-            }
+            document.getElementById('opponent-match-label').textContent = this.value || 'Opponent';
+            document.getElementById('opponent-total-label').textContent = this.value || 'Opponent';
         });
     }
 }
 
 // Tab switching
 function switchTab(tabId) {
-    // Update tab buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-    }
-
-    // Update content visibility
-    document.querySelectorAll('.tab-content').forEach(content => {
-        content.style.display = 'none';
-    });
-    const activeContent = document.getElementById(tabId);
-    if (activeContent) {
-        activeContent.style.display = 'block';
-    }
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-tab="${tabId}"]`)?.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
 }
 
-// Admin login functions
+// Admin functions
 function showAdminLogin() {
     document.getElementById('admin-modal').classList.add('show');
     document.getElementById('admin-password').focus();
@@ -222,32 +147,139 @@ function handleAdminLogin() {
     if (password === ADMIN_PASSWORD) {
         isAdmin = true;
         hideAdminLogin();
-        updateAdminUI();
-        updateTeamManagementUI();
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+        document.querySelector('.admin-login-btn').style.display = 'none';
+        populatePlayerInputs();
+        updateSeasonSelector();
+        updateRemovePlayerOptions();
         alert('Admin access granted!');
     } else {
         alert('Incorrect password!');
     }
 }
 
-function updateAdminUI() {
-    if (isAdmin) {
-        document.querySelectorAll('.admin-only').forEach(el => {
-            el.style.display = 'block';
-        });
-        document.querySelector('.admin-login-btn').style.display = 'none';
-        
-        // Populate player inputs in match form
-        populatePlayerInputs();
+// Season management
+function updateSeasonSelector() {
+    const select = document.getElementById('season-select');
+    if (!select) return;
+    
+    const seasons = Object.keys(dashboardData.seasons).sort().reverse();
+    select.innerHTML = seasons.map(s => 
+        `<option value="${s}" ${s === dashboardData.currentSeason ? 'selected' : ''}>${s.replace('-', '/')}</option>`
+    ).join('');
+}
+
+function handleSeasonChange(e) {
+    dashboardData.currentSeason = e.target.value;
+    updateAllDisplays();
+    saveData();
+}
+
+function showNewSeasonModal() {
+    document.getElementById('new-season-modal').classList.add('show');
+    const nextYear = parseInt(dashboardData.currentSeason.split('-')[0]) + 1;
+    document.getElementById('new-season-name').value = `${nextYear}-${(nextYear + 1).toString().slice(-2)}`;
+}
+
+function hideNewSeasonModal() {
+    document.getElementById('new-season-modal').classList.remove('show');
+}
+
+function startNewSeason() {
+    const newSeasonName = document.getElementById('new-season-name').value.trim();
+    if (!newSeasonName) {
+        alert('Please enter a season name');
+        return;
     }
+
+    if (dashboardData.seasons[newSeasonName]) {
+        alert('Season already exists!');
+        return;
+    }
+
+    // Create new season with fresh stats but same players
+    const currentSeason = getCurrentSeasonData();
+    const newPlayers = {};
+    
+    Object.keys(currentSeason.players).forEach(name => {
+        newPlayers[name] = {
+            games: 0,
+            totalPins: 0,
+            highScore: 0,
+            scores: [],
+            form: [],
+            isHandicap: currentSeason.players[name].isHandicap || false
+        };
+    });
+
+    dashboardData.seasons[newSeasonName] = {
+        teamStats: { wins: 0, losses: 0, draws: 0, points: 0, gamesPlayed: 0, totalPins: 0, averageScore: 0 },
+        players: newPlayers,
+        matches: [],
+        fixtures: [],
+        nextFixture: { opponent: 'TBD', date: 'TBD', venue: 'TBD' }
+    };
+
+    dashboardData.currentSeason = newSeasonName;
+    hideNewSeasonModal();
+    saveData();
+    updateAllDisplays();
+    alert(`New season ${newSeasonName} created! Don't forget to upload fixtures.`);
 }
 
-// Team management functions
-function updateTeamManagementUI() {
-    updateSquadDisplay();
-    updateRemovePlayerOptions();
+// Fixture upload
+function uploadFixtures() {
+    const csvInput = document.getElementById('csv-input').value.trim();
+    if (!csvInput) {
+        alert('Please paste CSV data');
+        return;
+    }
+
+    const lines = csvInput.split('\n');
+    const fixtures = [];
+    const uniqueOpponents = new Set();
+
+    lines.forEach(line => {
+        const parts = line.split(',').map(p => p.trim());
+        if (parts.length >= 3) {
+            const [date, opponent, venue, time] = parts;
+            const dateObj = new Date(date);
+            const displayDate = dateObj.toLocaleDateString('en-GB').split('/').reverse().join('/');
+            
+            fixtures.push({
+                date: date,
+                displayDate: displayDate.split('/').reverse().join('/'),
+                opponent: opponent,
+                venue: venue,
+                time: time || 'TBD' // Default to TBD if time not provided
+            });
+            uniqueOpponents.add(opponent);
+        }
+    });
+
+    if (fixtures.length === 0) {
+        alert('No valid fixtures found. Use format: Date,Opponent,Venue,Time');
+        return;
+    }
+
+    const season = getCurrentSeasonData();
+    season.fixtures = fixtures;
+    updateNextFixture();
+
+    // Update opponent dropdown
+    const opponentSelect = document.getElementById('opponent');
+    if (opponentSelect) {
+        opponentSelect.innerHTML = '<option value="">Select opponent...</option>' +
+            Array.from(uniqueOpponents).sort().map(o => `<option value="${o}">${o}</option>`).join('');
+    }
+
+    saveData();
+    updateAllDisplays();
+    alert(`${fixtures.length} fixtures loaded successfully!`);
+    document.getElementById('csv-input').value = '';
 }
 
+// Team management
 function addPlayer() {
     const nameInput = document.getElementById('new-player-name');
     const newPlayerName = nameInput.value.trim();
@@ -257,13 +289,13 @@ function addPlayer() {
         return;
     }
     
-    if (dashboardData.players[newPlayerName]) {
+    const season = getCurrentSeasonData();
+    if (season.players[newPlayerName]) {
         alert('Player already exists');
         return;
     }
     
-    // Add new player
-    dashboardData.players[newPlayerName] = {
+    season.players[newPlayerName] = {
         games: 0,
         totalPins: 0,
         highScore: 0,
@@ -273,10 +305,9 @@ function addPlayer() {
     
     nameInput.value = '';
     saveData();
-    updateDisplay();
-    updateTeamManagementUI();
+    updateAllDisplays();
     populatePlayerInputs();
-    
+    updateRemovePlayerOptions();
     alert(`${newPlayerName} added to the team!`);
 }
 
@@ -290,61 +321,42 @@ function removePlayer() {
     }
     
     if (playerToRemove === 'XYZ') {
-        alert('Cannot remove XYZ - this is needed for handicap situations');
+        alert('Cannot remove XYZ - needed for handicap situations');
         return;
     }
     
-    if (confirm(`Are you sure you want to remove ${playerToRemove} from the team?`)) {
-        delete dashboardData.players[playerToRemove];
+    if (confirm(`Remove ${playerToRemove} from the team?`)) {
+        const season = getCurrentSeasonData();
+        delete season.players[playerToRemove];
         saveData();
-        updateDisplay();
-        updateTeamManagementUI();
+        updateAllDisplays();
         populatePlayerInputs();
-        alert(`${playerToRemove} removed from the team.`);
+        updateRemovePlayerOptions();
+        alert(`${playerToRemove} removed.`);
     }
-}
-
-function updateSquadDisplay() {
-    const squadDisplay = document.getElementById('squad-display');
-    const squadCount = document.getElementById('squad-count');
-    
-    if (!squadDisplay || !squadCount) return;
-    
-    const players = Object.keys(dashboardData.players);
-    squadCount.textContent = players.length;
-    
-    squadDisplay.innerHTML = players.map(playerName => {
-        const player = dashboardData.players[playerName];
-        const isHandicap = player.isHandicap || playerName === 'XYZ';
-        
-        return `
-            <div class="squad-member ${isHandicap ? 'handicap' : 'regular'}">
-                ${playerName}
-                ${isHandicap ? '<div style="font-size: 0.75rem;">(Handicap)</div>' : ''}
-            </div>
-        `;
-    }).join('');
 }
 
 function updateRemovePlayerOptions() {
     const select = document.getElementById('remove-player-select');
     if (!select) return;
     
-    const players = Object.keys(dashboardData.players).filter(name => name !== 'XYZ');
-    select.innerHTML = '<option value="">Select player to remove...</option>' +
-        players.map(player => `<option value="${player}">${player}</option>`).join('');
+    const season = getCurrentSeasonData();
+    const players = Object.keys(season.players).filter(name => name !== 'XYZ');
+    select.innerHTML = '<option value="">Select player...</option>' +
+        players.map(p => `<option value="${p}">${p}</option>`).join('');
 }
 
 function populatePlayerInputs() {
     const playersGrid = document.getElementById('players-grid');
     if (!playersGrid) return;
     
-    const players = Object.keys(dashboardData.players);
+    const season = getCurrentSeasonData();
+    const players = Object.keys(season.players);
     playersGrid.innerHTML = players.map(playerName => {
         const isHandicap = playerName === 'XYZ';
         return `
             <div class="player-input ${isHandicap ? 'handicap' : ''}">
-                <label>${playerName}${isHandicap ? ' (Handicap Player)' : ''}</label>
+                <label>${playerName}${isHandicap ? ' (Handicap)' : ''}</label>
                 <input type="number" name="${playerName}" placeholder="0" min="0">
             </div>
         `;
@@ -355,7 +367,6 @@ function populatePlayerInputs() {
 function handleMatchSubmit(e) {
     e.preventDefault();
     
-    const formData = new FormData(e.target);
     const matchData = {
         date: document.getElementById('match-date').value,
         opponent: document.getElementById('opponent').value,
@@ -367,7 +378,6 @@ function handleMatchSubmit(e) {
         playerScores: {}
     };
 
-    // Get player scores
     const playerInputs = document.querySelectorAll('.player-input input');
     let playersWhoPlayed = 0;
     
@@ -381,56 +391,48 @@ function handleMatchSubmit(e) {
         }
     });
 
-    // Validate exactly 6 players played
     if (playersWhoPlayed !== 6) {
-        alert('Please enter scores for exactly 6 players who played. Leave others blank or as 0.');
+        alert('Please enter scores for exactly 6 players');
         return;
     }
 
-    // Process match
     processMatch(matchData);
-    
-    // Reset form
     document.getElementById('match-form').reset();
-    alert('Match result saved successfully!');
-    
-    // Update display
-    updateDisplay();
+    alert('Match saved successfully!');
+    updateAllDisplays();
 }
 
-// Process match data and update statistics
+// Process match
 function processMatch(matchData) {
-    // Add to matches array
-    dashboardData.matches.push(matchData);
+    const season = getCurrentSeasonData();
+    season.matches.push(matchData);
     
-    // Update team stats using CORRECT skittles scoring
     const isWin = matchData.wanstrowMatchScore > matchData.opponentMatchScore;
     const isLoss = matchData.wanstrowMatchScore < matchData.opponentMatchScore;
     const isDraw = matchData.wanstrowMatchScore === matchData.opponentMatchScore;
     
-    if (isWin) dashboardData.teamStats.wins++;
-    if (isLoss) dashboardData.teamStats.losses++;
-    if (isDraw) dashboardData.teamStats.draws++;
+    if (isWin) season.teamStats.wins++;
+    if (isLoss) season.teamStats.losses++;
+    if (isDraw) season.teamStats.draws++;
     
-    dashboardData.teamStats.gamesPlayed++;
+    season.teamStats.gamesPlayed++;
     
-    // FIXED: Use correct skittles scoring - points = legs won (including decimals)
-    // Calculate total points from all matches using parseFloat to handle decimals
+    // Calculate points with decimal support
     let totalPoints = 0;
-    dashboardData.matches.forEach(match => {
-        totalPoints += parseFloat(match.wanstrowMatchScore); // Ensure decimal handling
+    season.matches.forEach(match => {
+        totalPoints += parseFloat(match.wanstrowMatchScore);
     });
-    dashboardData.teamStats.points = Math.round(totalPoints * 10) / 10; // Round to 1 decimal place
+    season.teamStats.points = Math.round(totalPoints * 10) / 10;
     
-    dashboardData.teamStats.totalPins += matchData.wanstrowTotal;
-    dashboardData.teamStats.averageScore = Math.round((dashboardData.teamStats.totalPins / dashboardData.teamStats.gamesPlayed) * 10) / 10;
+    season.teamStats.totalPins += matchData.wanstrowTotal;
+    season.teamStats.averageScore = Math.round((season.teamStats.totalPins / season.teamStats.gamesPlayed) * 10) / 10;
     
     // Update player stats
     Object.keys(matchData.playerScores).forEach(playerName => {
         const score = matchData.playerScores[playerName];
-        const player = dashboardData.players[playerName];
+        const player = season.players[playerName];
         
-        if (score > 0 && player) { // Only count if they played and player exists
+        if (score > 0 && player) {
             player.games++;
             player.totalPins += score;
             player.scores.push(score);
@@ -439,85 +441,84 @@ function processMatch(matchData) {
                 player.highScore = score;
             }
             
-            // Update form (simple trend based on recent performance)
-            if (player.scores.length > 1) {
-                const recentAvg = player.scores.slice(-3).reduce((a, b) => a + b, 0) / Math.min(3, player.scores.length);
-                const overallAvg = player.totalPins / player.games;
-                player.form = recentAvg > overallAvg ? 'up' : recentAvg < overallAvg ? 'down' : 'same';
+            // Update form - compare last game to previous games
+            if (player.scores.length >= 2) {
+                const lastScore = player.scores[player.scores.length - 1];
+                const previousAvg = player.scores.slice(0, -1).reduce((a, b) => a + b, 0) / (player.scores.length - 1);
+                player.form = lastScore > previousAvg ? 'up' : lastScore < previousAvg ? 'down' : 'same';
+            } else {
+                player.form = 'same';
             }
         }
     });
     
-    // Update next fixture
     updateNextFixture();
-    
-    // Save data
     saveData();
 }
 
-// Update all display elements
-function updateDisplay() {
+// Update all displays
+function updateAllDisplays() {
     updateOverviewTab();
     updatePlayersTab();
+    updateHeadToHeadTab();
     updateResultsTab();
     updateHighScorer();
     updateFixturesList();
+    updateSeasonDisplay();
+    updateTeamManagementUI();
 }
 
-// Update overview tab
+// Update overview
 function updateOverviewTab() {
-    document.getElementById('wins-count').textContent = dashboardData.teamStats.wins;
-    document.getElementById('losses-count').textContent = dashboardData.teamStats.losses;
-    document.getElementById('draws-count').textContent = dashboardData.teamStats.draws;
+    const season = getCurrentSeasonData();
+    document.getElementById('wins-count').textContent = season.teamStats.wins;
+    document.getElementById('losses-count').textContent = season.teamStats.losses;
+    document.getElementById('draws-count').textContent = season.teamStats.draws;
     
-    // Format points to show decimals if needed
-    const points = dashboardData.teamStats.points;
+    const points = season.teamStats.points;
     document.getElementById('points-count').textContent = points % 1 === 0 ? points.toString() : points.toFixed(1);
     
-    document.getElementById('average-score').textContent = dashboardData.teamStats.averageScore || 'TBD';
+    document.getElementById('average-score').textContent = season.teamStats.averageScore || 'TBD';
     
     // Next fixture
-    document.getElementById('next-opponent').textContent = dashboardData.nextFixture.opponent;
-    document.getElementById('next-date').textContent = dashboardData.nextFixture.date;
-    document.getElementById('next-venue').textContent = dashboardData.nextFixture.venue;
+    document.getElementById('next-opponent').textContent = season.nextFixture.opponent;
+    document.getElementById('next-date').textContent = season.nextFixture.date;
+    document.getElementById('next-venue').textContent = season.nextFixture.venue;
+    document.getElementById('next-time').textContent = season.nextFixture.time;
     
     // Recent form
     updateRecentForm();
 }
 
-// Update high scorer in header
+// Update high scorer
 function updateHighScorer() {
-    const highScorerElement = document.getElementById('high-scorer');
-    if (!highScorerElement) return;
-    
-    const players = Object.keys(dashboardData.players);
+    const season = getCurrentSeasonData();
+    const players = Object.keys(season.players);
     let highestPlayer = { name: 'No games yet', totalPins: 0 };
     
     players.forEach(playerName => {
-        const player = dashboardData.players[playerName];
+        const player = season.players[playerName];
         if (player.totalPins > highestPlayer.totalPins) {
             highestPlayer = { name: playerName, totalPins: player.totalPins };
         }
     });
     
-    if (highestPlayer.totalPins === 0) {
-        highScorerElement.textContent = 'No games yet';
-    } else {
-        highScorerElement.textContent = `${highestPlayer.name} (${highestPlayer.totalPins})`;
-    }
+    document.getElementById('high-scorer').textContent = 
+        highestPlayer.totalPins === 0 ? 'No games yet' : `${highestPlayer.name} (${highestPlayer.totalPins})`;
 }
 
-// Update recent form display
+// Update recent form
 function updateRecentForm() {
+    const season = getCurrentSeasonData();
     const formDisplay = document.getElementById('form-display');
     if (!formDisplay) return;
     
-    if (dashboardData.matches.length === 0) {
-        formDisplay.innerHTML = '<p class="no-matches">Season starts soon - form will show here after matches!</p>';
+    if (season.matches.length === 0) {
+        formDisplay.innerHTML = '<p class="no-matches">Season starts soon!</p>';
         return;
     }
     
-    const recentMatches = dashboardData.matches.slice(-5).reverse();
+    const recentMatches = season.matches.slice(-5).reverse();
     const formHtml = recentMatches.map(match => {
         const result = match.wanstrowMatchScore > match.opponentMatchScore ? 'win' : 
                       match.wanstrowMatchScore < match.opponentMatchScore ? 'loss' : 'draw';
@@ -530,20 +531,21 @@ function updateRecentForm() {
 
 // Update players tab
 function updatePlayersTab() {
+    const season = getCurrentSeasonData();
     const playersTable = document.getElementById('players-table');
     if (!playersTable) return;
     
-    const playerNames = Object.keys(dashboardData.players);
+    const playerNames = Object.keys(season.players);
     
     const playersHtml = playerNames.map(name => {
-        const player = dashboardData.players[name];
+        const player = season.players[name];
         const average = player.games > 0 ? Math.round((player.totalPins / player.games) * 10) / 10 : 0;
         const formArrow = getFormArrow(player.form);
         const isHandicap = player.isHandicap || name === 'XYZ';
         
         return `
             <tr>
-                <td>${name}${isHandicap ? ' <span style="color: #ef4444; font-size: 0.75rem;">(Handicap)</span>' : ''}</td>
+                <td>${name}${isHandicap ? ' <span style="color: #ef4444; font-size: 0.75rem;">(H)</span>' : ''}</td>
                 <td>${player.games}</td>
                 <td>${player.totalPins}</td>
                 <td>${average || 'TBD'}</td>
@@ -554,25 +556,126 @@ function updatePlayersTab() {
     }).join('');
     
     playersTable.innerHTML = playersHtml;
+    
+    // Update form charts
+    updatePlayerFormCharts();
 }
 
-// Get form arrow based on recent performance
+// Update player form charts
+function updatePlayerFormCharts() {
+    const season = getCurrentSeasonData();
+    const chartsContainer = document.getElementById('player-form-charts');
+    if (!chartsContainer) return;
+    
+    const players = Object.keys(season.players)
+        .filter(name => season.players[name].scores.length >= 3)
+        .map(name => ({ name, ...season.players[name] }));
+    
+    if (players.length === 0) {
+        chartsContainer.innerHTML = '<p class="no-matches">Need at least 3 games for form trends!</p>';
+        return;
+    }
+    
+    const html = players.map(player => {
+        const recentScores = player.scores.slice(-8);
+        const maxScore = Math.max(...recentScores);
+        
+        const bars = recentScores.map(score => {
+            const height = (score / maxScore) * 100;
+            return `<div class="form-bar" style="height: ${height}%" data-score="${score}"></div>`;
+        }).join('');
+        
+        const avg = Math.round((player.totalPins / player.games) * 10) / 10;
+        
+        return `
+            <div style="margin-bottom: 2rem;">
+                <h4>${player.name} - Avg: ${avg}</h4>
+                <div class="form-chart">${bars}</div>
+            </div>
+        `;
+    }).join('');
+    
+    chartsContainer.innerHTML = html;
+}
+
 function getFormArrow(form) {
     if (!form || form === 'same') return '→';
     return form === 'up' ? '↗' : '↘';
 }
 
-// Update results tab
-function updateResultsTab() {
-    const resultsList = document.getElementById('results-list');
-    if (!resultsList) return;
+// Update head-to-head tab
+function updateHeadToHeadTab() {
+    const season = getCurrentSeasonData();
+    const h2hGrid = document.getElementById('h2h-grid');
+    if (!h2hGrid) return;
     
-    if (dashboardData.matches.length === 0) {
-        resultsList.innerHTML = '<p class="no-matches">No matches played yet - results will appear here!</p>';
+    if (season.matches.length === 0) {
+        h2hGrid.innerHTML = '<p class="no-matches">No matches played yet!</p>';
         return;
     }
     
-    const resultsHtml = dashboardData.matches.slice().reverse().map(match => {
+    // Calculate head-to-head records
+    const h2hRecords = {};
+    
+    season.matches.forEach(match => {
+        if (!h2hRecords[match.opponent]) {
+            h2hRecords[match.opponent] = { wins: 0, losses: 0, draws: 0, totalFor: 0, totalAgainst: 0 };
+        }
+        
+        const record = h2hRecords[match.opponent];
+        
+        if (match.wanstrowMatchScore > match.opponentMatchScore) {
+            record.wins++;
+        } else if (match.wanstrowMatchScore < match.opponentMatchScore) {
+            record.losses++;
+        } else {
+            record.draws++;
+        }
+        
+        record.totalFor += match.wanstrowMatchScore;
+        record.totalAgainst += match.opponentMatchScore;
+    });
+    
+    const html = Object.keys(h2hRecords).sort().map(opponent => {
+        const record = h2hRecords[opponent];
+        const total = record.wins + record.losses + record.draws;
+        
+        return `
+            <div class="h2h-card">
+                <div class="h2h-opponent">${opponent}</div>
+                <div class="h2h-record">
+                    <div class="h2h-stat h2h-wins">
+                        <strong>${record.wins}</strong><br>Wins
+                    </div>
+                    <div class="h2h-stat h2h-draws">
+                        <strong>${record.draws}</strong><br>Draws
+                    </div>
+                    <div class="h2h-stat h2h-losses">
+                        <strong>${record.losses}</strong><br>Losses
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem;">
+                    Total: ${record.totalFor} - ${record.totalAgainst} over ${total} games
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    h2hGrid.innerHTML = html;
+}
+
+// Update results tab
+function updateResultsTab() {
+    const season = getCurrentSeasonData();
+    const resultsList = document.getElementById('results-list');
+    if (!resultsList) return;
+    
+    if (season.matches.length === 0) {
+        resultsList.innerHTML = '<p class="no-matches">No matches played yet!</p>';
+        return;
+    }
+    
+    const resultsHtml = season.matches.slice().reverse().map(match => {
         const result = match.wanstrowMatchScore > match.opponentMatchScore ? 'win' : 
                       match.wanstrowMatchScore < match.opponentMatchScore ? 'loss' : 'draw';
         const letter = result === 'win' ? 'W' : result === 'loss' ? 'L' : 'D';
@@ -584,7 +687,7 @@ function updateResultsTab() {
                     <div class="result-badge ${result}">${letter}</div>
                     <div class="result-details">
                         <div class="result-score">Wanstrow ${match.wanstrowMatchScore}-${match.opponentMatchScore} ${match.opponent} (Pins: ${match.wanstrowTotal}-${match.opponentTotal})</div>
-                        <div class="result-date">${date}</div>
+                        <div class="result-date">${date} • ${match.venue}</div>
                     </div>
                 </div>
             </div>
@@ -594,16 +697,22 @@ function updateResultsTab() {
     resultsList.innerHTML = resultsHtml;
 }
 
-// Update fixtures list
+// Update fixtures list - show ALL remaining fixtures (not just 8)
 function updateFixturesList() {
+    const season = getCurrentSeasonData();
     const fixturesList = document.getElementById('fixtures-list');
     if (!fixturesList) return;
     
+    if (season.fixtures.length === 0) {
+        fixturesList.innerHTML = '<p class="no-matches">No fixtures loaded. Upload via Admin tab!</p>';
+        return;
+    }
+    
     const today = new Date();
-    const upcomingFixtures = dashboardData.fixtures.filter(fixture => {
+    const upcomingFixtures = season.fixtures.filter(fixture => {
         const fixtureDate = new Date(fixture.date);
         return fixtureDate >= today;
-    }).slice(0, 8);
+    }); // Show ALL remaining fixtures
     
     if (upcomingFixtures.length === 0) {
         fixturesList.innerHTML = '<p class="no-matches">Season complete!</p>';
@@ -612,12 +721,16 @@ function updateFixturesList() {
     
     const fixturesHtml = upcomingFixtures.map(fixture => {
         const venueClass = fixture.venue === 'Home' ? 'home' : 'away';
+        const timeClass = fixture.time === 'Early' ? 'time-early' : 'time-late';
         return `
             <div class="fixture-item ${venueClass}">
-                <div>
+                <div class="fixture-info">
                     <strong>${fixture.displayDate}</strong> vs ${fixture.opponent}
                 </div>
-                <div class="fixture-venue ${venueClass.toLowerCase()}">${fixture.venue}</div>
+                <div class="fixture-meta">
+                    <div class="fixture-venue ${venueClass.toLowerCase()}">${fixture.venue}</div>
+                    <div class="fixture-time ${timeClass}">${fixture.time}</div>
+                </div>
             </div>
         `;
     }).join('');
@@ -625,28 +738,55 @@ function updateFixturesList() {
     fixturesList.innerHTML = fixturesHtml;
 }
 
-// Update next fixture based on current date
+// Update next fixture
 function updateNextFixture() {
+    const season = getCurrentSeasonData();
     const today = new Date();
-    const nextFixture = dashboardData.fixtures.find(fixture => {
+    const nextFixture = season.fixtures.find(fixture => {
         const fixtureDate = new Date(fixture.date);
         return fixtureDate >= today;
     });
     
     if (nextFixture) {
-        dashboardData.nextFixture = {
+        season.nextFixture = {
             opponent: nextFixture.opponent,
             date: nextFixture.displayDate,
-            venue: nextFixture.venue
+            venue: nextFixture.venue,
+            time: nextFixture.time || 'TBD'
         };
     }
 }
 
-// Initialize display on page load
-function initializeDisplay() {
-    updateDisplay();
-    updateTeamManagementUI();
-    if (isAdmin) {
-        populatePlayerInputs();
-    }
+// Update season display
+function updateSeasonDisplay() {
+    document.getElementById('current-season').textContent = dashboardData.currentSeason.replace('-', '/');
+}
+
+// Team management UI updates
+function updateTeamManagementUI() {
+    updateSquadDisplay();
+    updateRemovePlayerOptions();
+}
+
+function updateSquadDisplay() {
+    const squadDisplay = document.getElementById('squad-display');
+    const squadCount = document.getElementById('squad-count');
+    
+    if (!squadDisplay || !squadCount) return;
+    
+    const season = getCurrentSeasonData();
+    const players = Object.keys(season.players);
+    squadCount.textContent = players.length;
+    
+    squadDisplay.innerHTML = players.map(playerName => {
+        const player = season.players[playerName];
+        const isHandicap = player.isHandicap || playerName === 'XYZ';
+        
+        return `
+            <div class="squad-member ${isHandicap ? 'handicap' : 'regular'}">
+                ${playerName}
+                ${isHandicap ? '<div style="font-size: 0.75rem;">(Handicap)</div>' : ''}
+            </div>
+        `;
+    }).join('');
 }
