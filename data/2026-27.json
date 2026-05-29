@@ -1,3 +1,113 @@
-  {
-     "matches": []
-   }
+{
+  "teamStats": {
+    "wins": 0,
+    "losses": 0,
+    "draws": 0,
+    "points": 0,
+    "gamesPlayed": 0,
+    "totalPins": 0,
+    "averageScore": 0
+  },
+  "players": {
+    "Christian": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Keith": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Helen": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Martin": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Paddy": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Steve": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Adrian": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Jason": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Linda": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Margaret": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "XYZ": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": [],
+      "isHandicap": true
+    },
+    "Ben": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Teresa": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    }
+  },
+  "matches": [],
+  "fixtures": [],
+  "nextFixture": {
+    "opponent": "TBD",
+    "date": "TBD",
+    "venue": "TBD",
+    "time": "TBD"
+  }
+}
