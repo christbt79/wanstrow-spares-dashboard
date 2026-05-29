@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadData();
     setupEventListeners();
     updateAllDisplays();
+    updateSeasonSelector();
     switchTab('overview');
 });
 
