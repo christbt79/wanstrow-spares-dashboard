@@ -6,6 +6,122 @@
     <title>Wanstrow Spares - Pub Skittles Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for new features */
+        .season-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .season-selector select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 2px solid #8b4513;
+            background: white;
+            font-size: 1rem;
+        }
+        
+        .new-season-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .new-season-btn:hover {
+            background: #059669;
+        }
+        
+        .csv-upload-area {
+            border: 2px dashed #8b4513;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .csv-upload-area textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        
+        .head-to-head-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .h2h-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .h2h-opponent {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #8b4513;
+        }
+        
+        .h2h-record {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+        
+        .h2h-stat {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+        
+        .h2h-wins { background: #d4edda; color: #155724; }
+        .h2h-losses { background: #f8d7da; color: #721c24; }
+        .h2h-draws { background: #d1ecf1; color: #0c5460; }
+        
+        .form-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.25rem;
+            height: 100px;
+            margin-top: 1rem;
+        }
+        
+        .form-bar {
+            flex: 1;
+            background: #3b82f6;
+            border-radius: 3px 3px 0 0;
+            position: relative;
+            min-height: 5px;
+        }
+        
+        .form-bar:hover::after {
+            content: attr(data-score);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
     <div class="dashboard">
@@ -15,15 +131,15 @@
                 <div class="header-content">
                     <div class="team-info">
                         <div class="team-logo">
-                            <i class="fas fa-bullseye"></i>
+                            <img src="wanstrow-logo.png" alt="Wanstrow Spares" class="logo-img">
                         </div>
                         <div class="team-details">
                             <h1>WANSTROW SPARES</h1>
-                            <p>There's Only One Team in Wanstrow!</p>
+                            <p>There's Only One Team In Wanstrow!</p>
                         </div>
                     </div>
                     <div class="season-info">
-                        <p>Season 2025/26 • High Scorer: <span id="high-scorer">No games yet</span></p>
+                        <p>High Scorer: <span id="high-scorer">No games yet</span></p>
                     </div>
                 </div>
             </div>
@@ -39,14 +155,20 @@
                     <button class="tab-btn" data-tab="players">
                         <i class="fas fa-users"></i> Player Stats
                     </button>
+                    <button class="tab-btn" data-tab="head-to-head">
+                        <i class="fas fa-handshake"></i> Head-to-Head
+                    </button>
                     <button class="tab-btn" data-tab="results">
                         <i class="fas fa-calendar"></i> Results
                     </button>
                     <button class="tab-btn admin-only" data-tab="entry" style="display: none;">
                         <i class="fas fa-plus"></i> Add Match
                     </button>
+                    <button class="tab-btn admin-only" data-tab="admin" style="display: none;">
+                        <i class="fas fa-cog"></i> Admin
+                    </button>
                     <button class="admin-login-btn">
-                        <i class="fas fa-plus"></i> Admin Login
+                        <i class="fas fa-lock"></i> Admin Login
                     </button>
                 </div>
             </div>
@@ -56,6 +178,17 @@
         <main class="main-content">
             <div class="container">
                 
+                <!-- Season Selector -->
+                <div class="season-selector admin-only" style="display: none;">
+                    <label><strong>Season:</strong></label>
+                    <select id="season-select">
+                        <option value="2026-27">2026/27</option>
+                    </select>
+                    <button class="new-season-btn" id="new-season-btn">
+                        <i class="fas fa-plus"></i> Start New Season
+                    </button>
+                </div>
+
                 <!-- Overview Tab -->
                 <div class="tab-content" id="overview">
                     <!-- Key Stats Cards -->
@@ -86,16 +219,20 @@
                     <div class="content-card">
                         <h3><i class="fas fa-calendar"></i> Next Fixture</h3>
                         <div class="fixture-card">
-                            <div class="fixture-match">Wanstrow Spares vs <span id="next-opponent">Dangerous Damsels</span></div>
-                            <div class="fixture-details"><span id="next-date">10/09/2025</span> • <span id="next-venue">Home</span></div>
+                            <div class="fixture-match">Wanstrow Spares vs <span id="next-opponent">TBD</span></div>
+                            <div class="fixture-details">
+                                <span id="next-date">TBD</span> • 
+                                <span id="next-venue">TBD</span> • 
+                                <span id="next-time">TBD</span>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Season Fixtures -->
                     <div class="content-card">
-                        <h3><i class="fas fa-crown"></i> Season Fixtures</h3>
-                        <div id="fixtures-list" class="fixtures-list">
-                            <!-- Fixtures will be populated here -->
+                        <h3><i class="fas fa-list"></i> Season Fixtures</h3>
+                        <div id="fixtures-list" class="fixtures-list" style="max-height: 500px; overflow-y: auto;">
+                            <!-- All remaining fixtures will be populated here -->
                         </div>
                     </div>
 
@@ -103,7 +240,7 @@
                     <div class="content-card">
                         <h3><i class="fas fa-chart-line"></i> Recent Form</h3>
                         <div class="form-display" id="form-display">
-                            <p class="no-matches">Season starts soon - form will show here after matches!</p>
+                            <p class="no-matches">Season starts soon!</p>
                         </div>
                     </div>
 
@@ -168,24 +305,41 @@
                             </table>
                         </div>
                     </div>
+
+                    <!-- Individual Player Form Charts -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-chart-bar"></i> Player Form Trends</h3>
+                        <div id="player-form-charts">
+                            <!-- Form charts will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Head-to-Head Tab -->
+                <div class="tab-content" id="head-to-head" style="display: none;">
+                    <div class="content-card">
+                        <h3><i class="fas fa-handshake"></i> Head-to-Head Records</h3>
+                        <div class="head-to-head-grid" id="h2h-grid">
+                            <!-- H2H records will be populated here -->
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Results Tab -->
                 <div class="tab-content" id="results" style="display: none;">
                     <div class="content-card">
-                        <h3><i class="fas fa-calendar"></i> Recent Results</h3>
+                        <h3><i class="fas fa-calendar"></i> Match Results</h3>
                         <div id="results-list" class="results-list">
-                            <p class="no-matches">No matches played yet - results will appear here!</p>
+                            <p class="no-matches">No matches played yet!</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Match Entry Tab (Admin Only) -->
+                <!-- Match Entry Tab -->
                 <div class="tab-content admin-only" id="entry" style="display: none;">
                     <div class="content-card">
                         <h3><i class="fas fa-plus"></i> Add Match Result</h3>
                         <form id="match-form" class="match-form">
-                            <!-- Match Details -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Match Date</label>
@@ -195,23 +349,6 @@
                                     <label>Opponent</label>
                                     <select id="opponent" required>
                                         <option value="">Select opponent...</option>
-                                        <option value="Ligs">Ligs</option>
-                                        <option value="Daleks">Daleks</option>
-                                        <option value="Barrow Boys">Barrow Boys</option>
-                                        <option value="Dangerous Damsels">Dangerous Damsels</option>
-                                        <option value="King Pins">King Pins</option>
-                                        <option value="Three Horseshoes">Three Horseshoes</option>
-                                        <option value="Balls Deep">Balls Deep</option>
-                                        <option value="The Tossers">The Tossers</option>
-                                        <option value="Double Ds">Double Ds</option>
-                                        <option value="Bridge Hill Mob">Bridge Hill Mob</option>
-                                        <option value="Deep In Cider">Deep In Cider</option>
-                                        <option value="All 3 Holes">All 3 Holes</option>
-                                        <option value="Allsorts">Allsorts</option>
-                                        <option value="Lionhearts">Lionhearts</option>
-                                        <option value="The Persuaders">The Persuaders</option>
-                                        <option value="Pin Pounders">Pin Pounders</option>
-                                        <option value="Horseshoe Belles">Horseshoe Belles</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -223,10 +360,9 @@
                                 </div>
                             </div>
 
-                            <!-- Match Scores -->
                             <div class="match-scores">
                                 <div class="score-section">
-                                    <label>Match Score (Legs + Pin Bonus)</label>
+                                    <label>Match Score</label>
                                     <div class="score-inputs">
                                         <div class="score-input">
                                             <label>Wanstrow</label>
@@ -238,14 +374,12 @@
                                             <input type="number" id="opponent-match-score" placeholder="0" step="0.5" min="0" required>
                                         </div>
                                     </div>
-                                    <div class="score-help">6 legs (1 point each) + 2 points for highest pins total = 8 points max</div>
                                 </div>
                             </div>
 
-                            <!-- Pin Totals -->
                             <div class="pin-totals">
                                 <div class="total-group wanstrow-total">
-                                    <label>Wanstrow Spares Pin Total</label>
+                                    <label>Wanstrow Pin Total</label>
                                     <input type="number" id="wanstrow-total" placeholder="0" required>
                                 </div>
                                 <div class="total-group opponent-total">
@@ -254,48 +388,92 @@
                                 </div>
                             </div>
 
-                            <!-- Individual Player Scores -->
                             <div class="players-section">
-                                <h4>Individual Player Scores (Enter scores for 6 players who played)</h4>
-                                <div class="players-grid" id="players-grid">
-                                    <!-- Player inputs will be populated here -->
-                                </div>
+                                <h4>Player Scores (6 players)</h4>
+                                <div class="players-grid" id="players-grid"></div>
                             </div>
 
-                            <!-- XYZ Explanation -->
-                            <div class="xyz-explanation">
-                                <p><strong>XYZ Player:</strong> Enter XYZ's calculated handicap score manually based on the lowest scores per round from both teams.</p>
-                            </div>
-
-                            <!-- Submit Button -->
                             <div class="form-actions">
                                 <button type="submit" class="save-btn">
-                                    <i class="fas fa-save"></i> Save Match Result
+                                    <i class="fas fa-save"></i> Save Match
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
 
+                <!-- Admin Tab -->
+                <div class="tab-content admin-only" id="admin" style="display: none;">
+                    <!-- CSV Fixture Upload -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-upload"></i> Upload Season Fixtures</h3>
+                        <p>Paste CSV data in format: Date,Opponent,Venue,Time</p>
+                        <p style="font-size: 0.9rem; color: #666;">Example: 2026-09-01,Barrow Boys,Away,Early</p>
+                        <div class="csv-upload-area">
+                            <textarea id="csv-input" placeholder="2026-09-01,Barrow Boys,Away,Early
+2026-09-08,King Pins,Home,Late
+..."></textarea>
+                            <button id="upload-fixtures-btn" class="save-btn" style="margin-top: 1rem;">
+                                <i class="fas fa-check"></i> Load Fixtures
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Team Management -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-users"></i> Team Management</h3>
+                        <div class="management-section">
+                            <h4>Add Player</h4>
+                            <div class="management-controls">
+                                <input type="text" id="new-player-name-admin" placeholder="Player name">
+                                <button id="add-player-btn-admin"><i class="fas fa-plus"></i> Add</button>
+                            </div>
+                        </div>
+                        <div class="management-section">
+                            <h4>Remove Player</h4>
+                            <div class="management-controls">
+                                <select id="remove-player-select-admin">
+                                    <option value="">Select player...</option>
+                                </select>
+                                <button id="remove-player-btn-admin"><i class="fas fa-minus"></i> Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="container">
-                <p>Updated weekly • Share this link: wanstrow-spares-dashboard</p>
+                <p>Wanstrow Spares • Season <span id="current-season">2026/27</span></p>
             </div>
         </footer>
     </div>
 
-    <!-- Admin Login Modal -->
+    <!-- Modals -->
     <div class="modal" id="admin-modal">
         <div class="modal-content">
             <h3>Admin Login</h3>
-            <input type="password" id="admin-password" placeholder="Enter admin password">
+            <input type="password" id="admin-password" placeholder="Enter password">
             <div class="modal-actions">
                 <button id="login-btn">Login</button>
                 <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="new-season-modal">
+        <div class="modal-content">
+            <h3>Start New Season</h3>
+            <p>This will archive the current season and start fresh. Continue?</p>
+            <div class="form-group">
+                <label>New Season Name</label>
+                <input type="text" id="new-season-name" placeholder="e.g., 2027-28">
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-new-season-btn">Start New Season</button>
+                <button id="cancel-new-season-btn">Cancel</button>
             </div>
         </div>
     </div>
