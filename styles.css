@@ -2,9 +2,9 @@
 /* Forest Green Theme - Modern & Clean */
 
 :root {
-    --primary-green: #1F5A3A;
-    --primary-dark: #153D28;
-    --primary-light: #2D7A52;
+    --primary-green: #12432D;
+    --primary-dark: #0C2E1E;
+    --primary-light: #1A5A3C;
     --cream: #F5F3E8;
     --cream-dark: #E8E5D5;
     --white: #FFFFFF;
@@ -66,8 +66,8 @@ body {
 }
 
 .team-logo {
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     background: var(--white);
     border-radius: 8px;
     display: flex;
@@ -151,7 +151,7 @@ body {
 .tab-btn.active {
     background: var(--primary-green);
     color: var(--cream);
-    box-shadow: 0 3px 8px rgba(31, 90, 58, 0.3);
+    box-shadow: 0 3px 8px rgba(18, 67, 45, 0.3);
 }
 
 .admin-login-btn {
@@ -174,7 +174,7 @@ body {
     background: var(--primary-green);
     color: var(--cream);
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(31, 90, 58, 0.3);
+    box-shadow: 0 3px 8px rgba(18, 67, 45, 0.3);
 }
 
 /* Main Content */
@@ -325,7 +325,7 @@ body {
 }
 
 .fixture-item.away {
-    background: linear-gradient(to right, rgba(31, 90, 58, 0.08), transparent);
+    background: linear-gradient(to right, rgba(18, 67, 45, 0.08), transparent);
     border-left: 4px solid var(--primary-green);
 }
 
@@ -552,7 +552,7 @@ body {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-green);
-    box-shadow: 0 0 0 3px rgba(31, 90, 58, 0.1);
+    box-shadow: 0 0 0 3px rgba(18, 67, 45, 0.1);
 }
 
 .match-scores,
@@ -706,7 +706,7 @@ body {
 .save-btn:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(31, 90, 58, 0.3);
+    box-shadow: 0 5px 15px rgba(18, 67, 45, 0.3);
 }
 
 /* Team Management */
@@ -858,7 +858,7 @@ body {
 .modal-content input:focus {
     outline: none;
     border-color: var(--primary-green);
-    box-shadow: 0 0 0 3px rgba(31, 90, 58, 0.1);
+    box-shadow: 0 0 0 3px rgba(18, 67, 45, 0.1);
 }
 
 .modal-actions {
@@ -920,6 +920,11 @@ body {
 
     .team-info {
         flex-direction: column;
+    }
+
+    .team-logo {
+        width: 90px;
+        height: 90px;
     }
 
     .team-details h1 {
