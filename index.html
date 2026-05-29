@@ -183,7 +183,8 @@
                 <div class="season-selector">
                     <label><strong>Season:</strong></label>
                     <select id="season-select">
-                        <option value="2026-27">2026/27</option>
+                        <option value="2026-27" selected>2026/27</option>
+                        <option value="2025-26">2025/26</option>
                     </select>
                     <button class="new-season-btn admin-only" id="new-season-btn" style="display: none;">
                         <i class="fas fa-plus"></i> Start New Season
@@ -420,26 +421,7 @@
                         </div>
                     </div>
 
-                    <!-- Team Management -->
-                    <div class="content-card">
-                        <h3><i class="fas fa-users"></i> Team Management</h3>
-                        <div class="management-section">
-                            <h4>Add Player</h4>
-                            <div class="management-controls">
-                                <input type="text" id="new-player-name-admin" placeholder="Player name">
-                                <button id="add-player-btn-admin"><i class="fas fa-plus"></i> Add</button>
-                            </div>
-                        </div>
-                        <div class="management-section">
-                            <h4>Remove Player</h4>
-                            <div class="management-controls">
-                                <select id="remove-player-select-admin">
-                                    <option value="">Select player...</option>
-                                </select>
-                                <button id="remove-player-btn-admin"><i class="fas fa-minus"></i> Remove</button>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
