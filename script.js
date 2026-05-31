@@ -28,7 +28,9 @@ const ADMIN_PASSWORD = 'WanstrowSpares2025';
 let isAdmin = false;
 
 // Initialize
-document.addEventListener('DOMContentLoaded', async function() {
+let playerSortState = { column: null, direction: 'desc' };
+
+
     await loadData();
     setupEventListeners();
     updateAllDisplays();
@@ -583,33 +585,86 @@ function updateRecentForm() {
 // Update players tab
 function updatePlayersTab() {
     const season = getCurrentSeasonData();
-    const playersTable = document.getElementById('players-table');
-    if (!playersTable) return;
-    
-    const playerNames = Object.keys(season.players);
-    
-    const playersHtml = playerNames.map(name => {
+    const container = document.getElementById('players-table-container');
+    if (!container) return;
+
+    // Build enriched player array
+    let players = Object.keys(season.players).map(name => {
         const player = season.players[name];
         const average = player.games > 0 ? Math.round((player.totalPins / player.games) * 10) / 10 : 0;
-        const formArrow = getFormArrow(player.form);
-        const isHandicap = player.isHandicap || name === 'XYZ';
-        
-        return `
-            <tr>
-                <td>${name}${isHandicap ? ' <span style="color: #ef4444; font-size: 0.75rem;">(H)</span>' : ''}</td>
-                <td>${player.games}</td>
-                <td>${player.totalPins}</td>
-                <td>${average || 'TBD'}</td>
-                <td>${player.highScore || '-'}</td>
-                <td>${formArrow}</td>
-            </tr>
-        `;
+        return {
+            name,
+            games: player.games,
+            totalPins: player.totalPins,
+            average,
+            highScore: player.highScore || 0,
+            formArrow: getFormArrow(player.form),
+            isHandicap: player.isHandicap || name === 'XYZ'
+        };
+    });
+
+    // Apply sort if one is active
+    if (playerSortState.column) {
+        players.sort((a, b) => {
+            let aVal = a[playerSortState.column];
+            let bVal = b[playerSortState.column];
+            if (typeof aVal === 'string') { aVal = aVal.toLowerCase(); bVal = bVal.toLowerCase(); }
+            if (aVal < bVal) return playerSortState.direction === 'asc' ? -1 : 1;
+            if (aVal > bVal) return playerSortState.direction === 'asc' ? 1 : -1;
+            return 0;
+        });
+    }
+
+    const cols = [
+        { key: 'name',      label: 'Player',     sortable: true  },
+        { key: 'games',     label: 'Games',      sortable: true  },
+        { key: 'totalPins', label: 'Total Pins', sortable: true  },
+        { key: 'average',   label: 'Average',    sortable: true  },
+        { key: 'highScore', label: 'High Score', sortable: true  },
+        { key: 'form',      label: 'Form',       sortable: false }
+    ];
+
+    const headersHtml = cols.map(col => {
+        if (!col.sortable) return `<th>${col.label}</th>`;
+        const isActive = playerSortState.column === col.key;
+        const indicator = isActive
+            ? (playerSortState.direction === 'desc' ? ' ↓' : ' ↑')
+            : ' <span class="sort-hint">⇅</span>';
+        return `<th class="sortable-col${isActive ? ' sort-active' : ''}" onclick="sortPlayerTable('${col.key}')">${col.label}${indicator}</th>`;
     }).join('');
-    
-    playersTable.innerHTML = playersHtml;
-    
-    // Update form charts
+
+    const rowsHtml = players.map(p => `
+        <tr>
+            <td>${p.name}${p.isHandicap ? ' <span style="color:#ef4444;font-size:0.75rem;">(H)</span>' : ''}</td>
+            <td>${p.games}</td>
+            <td>${p.totalPins}</td>
+            <td>${p.average || 'TBD'}</td>
+            <td>${p.highScore || '-'}</td>
+            <td>${p.formArrow}</td>
+        </tr>
+    `).join('');
+
+    container.innerHTML = `
+        <table class="stats-table">
+            <thead><tr>${headersHtml}</tr></thead>
+            <tbody>${rowsHtml}</tbody>
+        </table>
+    `;
+
     updatePlayerFormCharts();
+}
+
+function sortPlayerTable(column) {
+    if (playerSortState.column === column) {
+        if (playerSortState.direction === 'desc') {
+            playerSortState.direction = 'asc';
+        } else {
+            playerSortState = { column: null, direction: 'desc' }; // third click resets
+        }
+    } else {
+        playerSortState = { column, direction: 'desc' };
+    }
+    updatePlayersTab();
 }
 
 // Update player form charts
