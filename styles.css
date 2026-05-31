@@ -416,6 +416,25 @@ body {
     text-align: center;
 }
 
+.stats-table th.sortable-col {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease;
+}
+
+.stats-table th.sortable-col:hover {
+    background: var(--primary-light);
+}
+
+.stats-table th.sort-active {
+    background: var(--primary-light);
+}
+
+.sort-hint {
+    opacity: 0.45;
+    font-size: 0.8rem;
+}
+
 /* Tables */
 .table-container {
     overflow-x: auto;
