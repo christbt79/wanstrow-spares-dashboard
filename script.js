@@ -588,8 +588,8 @@ function updatePlayersTab() {
     const container = document.getElementById('players-table-container');
     if (!container) return;
 
-    // Build enriched player array
-    let players = Object.keys(season.players).map(name => {
+    // Build enriched player array — guard against archive seasons with no players object
+    let players = season.players ? Object.keys(season.players).map(name => {
         const player = season.players[name];
         const average = player.games > 0 ? Math.round((player.totalPins / player.games) * 10) / 10 : 0;
         return {
@@ -601,7 +601,7 @@ function updatePlayersTab() {
             formArrow: getFormArrow(player.form),
             isHandicap: player.isHandicap || name === 'XYZ'
         };
-    });
+    }) : [];
 
     // Apply sort if one is active
     if (playerSortState.column) {
