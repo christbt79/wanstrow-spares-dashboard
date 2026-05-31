@@ -30,7 +30,7 @@ let isAdmin = false;
 // Initialize
 let playerSortState = { column: null, direction: 'desc' };
 
-
+document.addEventListener('DOMContentLoaded', async function() {
     await loadData();
     setupEventListeners();
     updateAllDisplays();
