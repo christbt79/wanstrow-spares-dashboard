@@ -683,7 +683,13 @@ function updatePlayerFormCharts() {
     
     const players = Object.keys(season.players)
         .filter(name => season.players[name].scores.length >= 3)
-        .map(name => ({ name, ...season.players[name] }));
+        .map(name => ({ name, ...season.players[name] }))
+        .sort((a, b) => {
+            const avgA = a.games > 0 ? a.totalPins / a.games : 0;
+            const avgB = b.games > 0 ? b.totalPins / b.games : 0;
+            if (avgB !== avgA) return avgB - avgA;
+            return a.name.localeCompare(b.name);
+        });
     
     if (players.length === 0) {
         chartsContainer.innerHTML = '<p class="no-matches">Need at least 3 games for form trends!</p>';
@@ -889,7 +895,11 @@ function updateSquadDisplay() {
     if (!squadDisplay || !squadCount) return;
     
     const season = getCurrentSeasonData();
-    const players = Object.keys(season.players);
+    const players = Object.keys(season.players).sort((a, b) => {
+        if (a === 'XYZ') return 1;
+        if (b === 'XYZ') return -1;
+        return a.localeCompare(b);
+    });
     squadCount.textContent = players.length;
     
     squadDisplay.innerHTML = players.map(playerName => {
