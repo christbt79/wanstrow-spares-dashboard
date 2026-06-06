@@ -603,15 +603,23 @@ function updatePlayersTab() {
         };
     }) : [];
 
-    // Apply sort if one is active
+    // Apply sort — default is alphabetical with XYZ pinned to bottom
     if (playerSortState.column) {
         players.sort((a, b) => {
+            if (a.name === 'XYZ') return 1;
+            if (b.name === 'XYZ') return -1;
             let aVal = a[playerSortState.column];
             let bVal = b[playerSortState.column];
             if (typeof aVal === 'string') { aVal = aVal.toLowerCase(); bVal = bVal.toLowerCase(); }
             if (aVal < bVal) return playerSortState.direction === 'asc' ? -1 : 1;
             if (aVal > bVal) return playerSortState.direction === 'asc' ? 1 : -1;
             return 0;
+        });
+    } else {
+        players.sort((a, b) => {
+            if (a.name === 'XYZ') return 1;
+            if (b.name === 'XYZ') return -1;
+            return a.name.localeCompare(b.name);
         });
     }
 
