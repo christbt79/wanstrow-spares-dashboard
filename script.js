@@ -17,6 +17,7 @@ let dashboardData = {
                 Paddy: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Steve: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Teresa: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Tom: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 XYZ: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [], isHandicap: true }
             },
             matches: [],
