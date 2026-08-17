@@ -5,16 +5,18 @@ let dashboardData = {
         '2026-27': {
             teamStats: { wins: 0, losses: 0, draws: 0, points: 0, gamesPlayed: 0, totalPins: 0, averageScore: 0 },
             players: {
+                Adrian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Ben: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Christian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-                Keith: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Edd: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Helen: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Jason: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Keith: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Linda: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Martin: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Paddy: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 Steve: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-                Adrian: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-                Jason: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-                Linda: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
-                Margaret: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
+                Teresa: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [] },
                 XYZ: { games: 0, totalPins: 0, highScore: 0, scores: [], form: [], isHandicap: true }
             },
             matches: [],
