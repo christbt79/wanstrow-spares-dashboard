@@ -9,7 +9,42 @@
     "averageScore": 0
   },
   "players": {
+    "Adrian": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Ben": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
     "Christian": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Edd": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Helen": {
+      "games": 0,
+      "totalPins": 0,
+      "highScore": 0,
+      "scores": [],
+      "form": []
+    },
+    "Jason": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
@@ -23,7 +58,7 @@
       "scores": [],
       "form": []
     },
-    "Helen": {
+    "Linda": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
@@ -49,30 +84,10 @@
       "totalPins": 0,
       "highScore": 0,
       "scores": [],
-      "form": []
+      "form": [],
+      "isHandicap": true
     },
-    "Adrian": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
-      "form": []
-    },
-    "Jason": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
-      "form": []
-    },
-    "Linda": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
-      "form": []
-    },
-    "Margaret": {
+    "Teresa": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
@@ -80,21 +95,6 @@
       "form": []
     },
     "XYZ": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
-      "form": [],
-      "isHandicap": true
-    },
-    "Ben": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
-      "form": []
-    },
-    "Teresa": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
