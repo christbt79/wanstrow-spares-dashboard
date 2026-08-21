@@ -181,10 +181,4 @@ These are deliberate trade-offs to keep the site free to host and simple to main
 
 ---
 
-## 🏆 Team Roster (2026/27)
-
-Christian · Keith · Helen · Martin · Paddy · Steve · Adrian · Jason · Linda · Margaret
-
----
-
 *Built for Wanstrow Spares. Skittles at The King William IV. There's Only One Team In Wanstrow!* 🎳
