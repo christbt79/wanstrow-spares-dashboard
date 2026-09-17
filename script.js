@@ -315,13 +315,6 @@ function uploadFixtures() {
     season.fixtures = fixtures;
     updateNextFixture();
 
-    // Update opponent dropdown
-    const opponentSelect = document.getElementById('opponent');
-    if (opponentSelect) {
-        opponentSelect.innerHTML = '<option value="">Select opponent...</option>' +
-            Array.from(uniqueOpponents).sort().map(o => `<option value="${o}">${o}</option>`).join('');
-    }
-
     saveData();
     updateAllDisplays();
     alert(`${fixtures.length} fixtures loaded successfully!`);
@@ -522,6 +515,32 @@ function updateAllDisplays() {
     updateFixturesList();
     updateSeasonDisplay();
     updateTeamManagementUI();
+    updateOpponentOptions();
+}
+
+// Rebuild the Add Match opponent dropdown from the saved fixtures
+function updateOpponentOptions() {
+    const opponentSelect = document.getElementById('opponent');
+    if (!opponentSelect) return;
+
+    const season = getCurrentSeasonData();
+    const fixtures = season.fixtures || [];
+    const opponents = Array.from(new Set(fixtures.map(f => f.opponent).filter(Boolean))).sort();
+
+    const previous = opponentSelect.value;
+
+    if (opponents.length === 0) {
+        opponentSelect.innerHTML = '<option value="">No fixtures loaded yet</option>';
+        return;
+    }
+
+    opponentSelect.innerHTML = '<option value="">Select opponent...</option>' +
+        opponents.map(o => `<option value="${o}">${o}</option>`).join('');
+
+    // Keep the current selection if it's still a valid opponent
+    if (previous && opponents.includes(previous)) {
+        opponentSelect.value = previous;
+    }
 }
 
 // Update overview
