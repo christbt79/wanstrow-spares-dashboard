@@ -533,6 +533,67 @@ body {
     font-size: 0.95rem;
 }
 
+.result-item.clickable {
+    cursor: pointer;
+}
+
+.result-chevron {
+    color: var(--primary-green);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.45;
+    flex-shrink: 0;
+    padding-left: 0.5rem;
+}
+
+.result-item.clickable:hover .result-chevron {
+    opacity: 1;
+}
+
+/* Match detail modal */
+.match-detail-meta {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}
+
+.match-detail-scores {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.match-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+}
+
+.match-detail-row.handicap {
+    background: rgba(239, 68, 68, 0.05);
+    border-color: var(--danger);
+}
+
+.match-detail-name {
+    font-weight: 600;
+}
+
+.match-detail-score {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--primary-green);
+}
+
+.match-detail-row.handicap .match-detail-score {
+    color: var(--danger);
+}
+
 /* Forms */
 .match-form {
     display: flex;
@@ -959,6 +1020,30 @@ body {
         padding: 0.75rem 1rem;
     }
 
+    /* Let fixture rows wrap instead of pushing badges past the card edge */
+    .fixture-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.875rem 1rem;
+    }
+
+    .fixture-info {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .fixture-meta {
+        flex-wrap: wrap;
+    }
+
+    .result-info {
+        min-width: 0;
+    }
+
+    .result-details {
+        min-width: 0;
+    }
+
     .admin-login-btn {
         padding: 0.5rem 0.65rem;
         font-size: 0;
@@ -1009,5 +1094,20 @@ body {
 
     .stat-card {
         padding: 1.25rem;
+    }
+}
+
+/* Touch devices: hover states stick after tapping and make rows drift
+   sideways while scrolling, so disable the sideways nudge there. */
+@media (hover: none) {
+    .fixture-item:hover,
+    .result-item:hover {
+        transform: none;
+    }
+
+    .tab-btn:hover,
+    .admin-login-btn:hover,
+    .stat-card:hover {
+        transform: none;
     }
 }
