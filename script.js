@@ -108,6 +108,12 @@ function setupEventListeners() {
     document.getElementById('confirm-new-season-btn')?.addEventListener('click', startNewSeason);
     document.getElementById('cancel-new-season-btn')?.addEventListener('click', hideNewSeasonModal);
 
+    // Match detail modal
+    document.getElementById('close-match-detail-btn')?.addEventListener('click', hideMatchDetail);
+    document.getElementById('match-detail-modal')?.addEventListener('click', function(e) {
+        if (e.target === this) hideMatchDetail();
+    });
+
     // Fixture upload
     document.getElementById('upload-fixtures-btn')?.addEventListener('click', uploadFixtures);
 
@@ -817,26 +823,70 @@ function updateResultsTab() {
         return;
     }
     
-    const resultsHtml = season.matches.slice().reverse().map(match => {
+    const resultsHtml = season.matches.slice().reverse().map((match, reverseIndex) => {
+        const realIndex = season.matches.length - 1 - reverseIndex;
         const result = match.wanstrowMatchScore > match.opponentMatchScore ? 'win' : 
                       match.wanstrowMatchScore < match.opponentMatchScore ? 'loss' : 'draw';
         const letter = result === 'win' ? 'W' : result === 'loss' ? 'L' : 'D';
         const date = new Date(match.date).toLocaleDateString('en-GB');
         
         return `
-            <div class="result-item">
+            <div class="result-item clickable" onclick="showMatchDetail(${realIndex})" role="button" tabindex="0">
                 <div class="result-info">
                     <div class="result-badge ${result}">${letter}</div>
                     <div class="result-details">
                         <div class="result-score">Wanstrow ${match.wanstrowMatchScore}-${match.opponentMatchScore} ${match.opponent} (Pins: ${match.wanstrowTotal}-${match.opponentTotal})</div>
                         <div class="result-date">${date} • ${match.venue}</div>
                     </div>
+                    <div class="result-chevron">›</div>
                 </div>
             </div>
         `;
     }).join('');
     
     resultsList.innerHTML = resultsHtml;
+}
+
+// Show the player scores for a single match
+function showMatchDetail(matchIndex) {
+    const season = getCurrentSeasonData();
+    const match = season.matches[matchIndex];
+    if (!match) return;
+
+    const modal = document.getElementById('match-detail-modal');
+    const title = document.getElementById('match-detail-title');
+    const body = document.getElementById('match-detail-body');
+    if (!modal || !title || !body) return;
+
+    const date = new Date(match.date).toLocaleDateString('en-GB');
+    title.textContent = `Wanstrow ${match.wanstrowMatchScore}-${match.opponentMatchScore} ${match.opponent}`;
+
+    const scores = match.playerScores || {};
+    // Only players who actually played (score above zero), highest first
+    const played = Object.keys(scores)
+        .filter(name => scores[name] > 0)
+        .sort((a, b) => scores[b] - scores[a]);
+
+    const rowsHtml = played.length === 0
+        ? '<p class="no-matches">No player scores recorded for this match.</p>'
+        : played.map(name => `
+            <div class="match-detail-row${name === 'XYZ' ? ' handicap' : ''}">
+                <span class="match-detail-name">${name}${name === 'XYZ' ? ' (Handicap)' : ''}</span>
+                <span class="match-detail-score">${scores[name]}</span>
+            </div>
+        `).join('');
+
+    body.innerHTML = `
+        <p class="match-detail-meta">${date} • ${match.venue} • Pins ${match.wanstrowTotal}-${match.opponentTotal}</p>
+        <div class="match-detail-scores">${rowsHtml}</div>
+    `;
+
+    modal.classList.add('show');
+}
+
+function hideMatchDetail() {
+    const modal = document.getElementById('match-detail-modal');
+    if (modal) modal.classList.remove('show');
 }
 
 // Update fixtures list - show ALL remaining fixtures (not just 8)
