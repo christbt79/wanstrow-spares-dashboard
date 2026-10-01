@@ -1,12 +1,12 @@
 {
   "teamStats": {
     "wins": 2,
-    "losses": 1,
+    "losses": 2,
     "draws": 0,
-    "points": 13,
-    "gamesPlayed": 3,
-    "totalPins": 638,
-    "averageScore": 212.7
+    "points": 15,
+    "gamesPlayed": 4,
+    "totalPins": 843,
+    "averageScore": 210.8
   },
   "players": {
     "Christian": {
@@ -21,39 +21,44 @@
       "form": "down"
     },
     "Keith": {
-      "games": 2,
-      "totalPins": 80,
+      "games": 3,
+      "totalPins": 119,
       "highScore": 44,
       "scores": [
         44,
-        36
+        36,
+        39
       ],
       "form": "down"
     },
     "Helen": {
-      "games": 2,
-      "totalPins": 51,
+      "games": 3,
+      "totalPins": 76,
       "highScore": 27,
       "scores": [
         27,
-        24
+        24,
+        25
       ],
       "form": "down"
     },
     "Martin": {
-      "games": 0,
-      "totalPins": 0,
-      "highScore": 0,
-      "scores": [],
-      "form": []
+      "games": 1,
+      "totalPins": 48,
+      "highScore": 48,
+      "scores": [
+        48
+      ],
+      "form": "same"
     },
     "Paddy": {
-      "games": 2,
-      "totalPins": 52,
+      "games": 3,
+      "totalPins": 76,
       "highScore": 29,
       "scores": [
         29,
-        23
+        23,
+        24
       ],
       "form": "down"
     },
@@ -69,14 +74,15 @@
       "form": "up"
     },
     "Adrian": {
-      "games": 2,
-      "totalPins": 68,
-      "highScore": 38,
+      "games": 3,
+      "totalPins": 111,
+      "highScore": 43,
       "scores": [
         38,
-        30
+        30,
+        43
       ],
-      "form": "down"
+      "form": "up"
     },
     "Jason": {
       "games": 0,
@@ -133,6 +139,15 @@
         39
       ],
       "form": "down"
+    },
+    "Jabu": {
+      "games": 1,
+      "totalPins": 26,
+      "highScore": 26,
+      "scores": [
+        26
+      ],
+      "form": "same"
     }
   },
   "matches": [
@@ -209,6 +224,32 @@
         "Teresa": 0,
         "Edd": 0,
         "Tom": 39
+      }
+    },
+    {
+      "date": "2026-10-01",
+      "opponent": "Three Horsehoes",
+      "venue": "Home",
+      "wanstrowMatchScore": 2,
+      "opponentMatchScore": 6,
+      "wanstrowTotal": 205,
+      "opponentTotal": 227,
+      "playerScores": {
+        "Christian": 0,
+        "Keith": 39,
+        "Helen": 25,
+        "Martin": 48,
+        "Paddy": 24,
+        "Steve": 0,
+        "Adrian": 43,
+        "Jason": 0,
+        "Linda": 0,
+        "XYZ": 0,
+        "Ben": 0,
+        "Teresa": 0,
+        "Edd": 0,
+        "Tom": 0,
+        "Jabu": 26
       }
     }
   ],
@@ -453,9 +494,9 @@
     }
   ],
   "nextFixture": {
-    "opponent": "Three Horsehoes",
-    "date": "01/10/2026",
-    "venue": "Home",
-    "time": "Early"
+    "opponent": "Balls Deep",
+    "date": "07/10/2026",
+    "venue": "Away",
+    "time": "Late"
   }
 }
