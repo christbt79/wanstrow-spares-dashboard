@@ -1,67 +1,72 @@
 {
   "teamStats": {
-    "wins": 2,
+    "wins": 3,
     "losses": 3,
     "draws": 0,
-    "points": 18,
-    "gamesPlayed": 5,
-    "totalPins": 1057,
-    "averageScore": 211.4
+    "points": 25,
+    "gamesPlayed": 6,
+    "totalPins": 1280,
+    "averageScore": 213.3
   },
   "players": {
     "Christian": {
-      "games": 4,
-      "totalPins": 161,
+      "games": 5,
+      "totalPins": 198,
       "highScore": 44,
       "scores": [
         39,
         44,
         37,
-        41
+        41,
+        37
       ],
-      "form": "up"
+      "form": "down"
     },
     "Keith": {
-      "games": 3,
-      "totalPins": 119,
+      "games": 4,
+      "totalPins": 157,
       "highScore": 44,
       "scores": [
         44,
         36,
-        39
+        39,
+        38
       ],
       "form": "down"
     },
     "Helen": {
-      "games": 3,
-      "totalPins": 76,
-      "highScore": 27,
+      "games": 4,
+      "totalPins": 110,
+      "highScore": 34,
       "scores": [
         27,
         24,
-        25
+        25,
+        34
       ],
-      "form": "down"
+      "form": "up"
     },
     "Martin": {
-      "games": 2,
-      "totalPins": 82,
+      "games": 3,
+      "totalPins": 124,
       "highScore": 48,
       "scores": [
         48,
-        34
+        34,
+        42
       ],
-      "form": "down"
+      "form": "up"
     },
     "Paddy": {
-      "games": 4,
-      "totalPins": 113,
+      "games": 5,
+      "totalPins": 149,
       "highScore": 37,
       "scores": [
         29,
         23,
         24,
-        37
+        37,
+        36
       ],
       "form": "up"
     },
@@ -147,13 +152,14 @@
       "form": "down"
     },
     "Jabu": {
-      "games": 1,
-      "totalPins": 26,
-      "highScore": 26,
+      "games": 2,
+      "totalPins": 62,
+      "highScore": 36,
       "scores": [
-        26
+        26,
+        36
       ],
-      "form": "same"
+      "form": "up"
     }
   },
   "matches": [
@@ -282,6 +288,32 @@
         "Edd": 0,
         "Tom": 32,
         "Jabu": 0
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "The Tossers",
+      "venue": "Home",
+      "wanstrowMatchScore": 7,
+      "opponentMatchScore": 1,
+      "wanstrowTotal": 223,
+      "opponentTotal": 214,
+      "playerScores": {
+        "Christian": 37,
+        "Keith": 38,
+        "Helen": 34,
+        "Martin": 42,
+        "Paddy": 36,
+        "Steve": 0,
+        "Adrian": 0,
+        "Jason": 0,
+        "Linda": 0,
+        "XYZ": 0,
+        "Ben": 0,
+        "Teresa": 0,
+        "Edd": 0,
+        "Tom": 0,
+        "Jabu": 36
       }
     }
   ],
@@ -526,9 +558,9 @@
     }
   ],
   "nextFixture": {
-    "opponent": "The Tossers",
-    "date": "14/10/2026",
-    "venue": "Home",
+    "opponent": "Double Ds",
+    "date": "22/10/2026",
+    "venue": "Away",
     "time": "Late"
   }
 }
