@@ -108,6 +108,19 @@ function setupEventListeners() {
     document.getElementById('confirm-new-season-btn')?.addEventListener('click', startNewSeason);
     document.getElementById('cancel-new-season-btn')?.addEventListener('click', hideNewSeasonModal);
 
+    // Info tips: tap/click toggles (for mobile); desktop also opens on hover via CSS.
+    // Delegated on document so it covers tips rendered later (e.g. the Player Stats table).
+    document.addEventListener('click', function(e) {
+        const tip = e.target.closest('.info-tip');
+        document.querySelectorAll('.info-tip.open').forEach(t => {
+            if (t !== tip) t.classList.remove('open');
+        });
+        if (tip) {
+            e.stopPropagation();
+            tip.classList.toggle('open');
+        }
+    });
+
     // Match detail modal
     document.getElementById('close-match-detail-btn')?.addEventListener('click', hideMatchDetail);
     document.getElementById('match-detail-modal')?.addEventListener('click', function(e) {
@@ -518,6 +531,7 @@ function updateAllDisplays() {
     updateHeadToHeadTab();
     updateResultsTab();
     updateHighScorer();
+    updateMostImproved();
     updateFixturesList();
     updateSeasonDisplay();
     updateTeamManagementUI();
@@ -586,6 +600,35 @@ function updateHighScorer() {
     
     document.getElementById('high-scorer').textContent = 
         highestPlayer.totalPins === 0 ? 'No games yet' : `${highestPlayer.name} (${highestPlayer.totalPins})`;
+}
+
+// Most Improved: last-3-games average minus the average of all earlier games.
+// Needs at least 4 games (3 recent + at least 1 earlier). XYZ is excluded.
+function updateMostImproved() {
+    const el = document.getElementById('most-improved');
+    if (!el) return;
+
+    const season = getCurrentSeasonData();
+    const players = season.players || {};
+    const avg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+    let best = null;
+
+    Object.keys(players).sort().forEach(name => {
+        if (name === 'XYZ') return;
+        const scores = players[name].scores || [];
+        if (scores.length < 4) return;
+
+        const delta = avg(scores.slice(-3)) - avg(scores.slice(0, -3));
+        if (!best || delta > best.delta) best = { name, delta };
+    });
+
+    if (!best) {
+        el.textContent = 'Not enough games yet';
+    } else if (best.delta <= 0) {
+        el.textContent = 'No improvers yet';
+    } else {
+        el.textContent = `${best.name} (+${best.delta.toFixed(1)})`;
+    }
 }
 
 // Update recent form
@@ -661,7 +704,13 @@ function updatePlayersTab() {
     ];
 
     const headersHtml = cols.map(col => {
-        if (!col.sortable) return `<th>${col.label}</th>`;
+        if (!col.sortable) {
+            if (col.key === 'form') {
+                return `<th>${col.label} <button type="button" class="info-tip" aria-label="What does Form mean?"
+                    data-tip="Compares a player's latest game with their average from all their previous games. ↗ above their average, ↘ below it, → level.">i</button></th>`;
+            }
+            return `<th>${col.label}</th>`;
+        }
         const isActive = playerSortState.column === col.key;
         const indicator = isActive
             ? (playerSortState.direction === 'desc' ? ' ↓' : ' ↑')
