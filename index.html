@@ -140,7 +140,16 @@
                         </div>
                     </div>
                     <div class="season-info">
-                        <p>High Scorer: <span id="high-scorer">No games yet</span></p>
+                        <p class="header-stat">
+                            High Scorer: <span id="high-scorer">No games yet</span>
+                            <button type="button" class="info-tip" aria-label="What is High Scorer?"
+                                data-tip="The player with the most total pins knocked down this season. Players who have played more games have an advantage.">i</button>
+                        </p>
+                        <p class="header-stat">
+                            Most Improved: <span id="most-improved">Not enough games yet</span>
+                            <button type="button" class="info-tip" aria-label="What is Most Improved?"
+                                data-tip="The player whose last 3 games average is furthest above their average from all their earlier games. Needs at least 4 games played.">i</button>
+                        </p>
                     </div>
                 </div>
             </div>
