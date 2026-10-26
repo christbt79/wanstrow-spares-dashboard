@@ -38,39 +38,117 @@ document.addEventListener('DOMContentLoaded', async function() {
     setupEventListeners();
     updateAllDisplays();
     updateSeasonSelector();
+    updateUnpushedBanner();
     switchTab('overview');
 });
 
-// Load data
-async function loadData() {
+// GitHub repo details, used by the "Open on GitHub" link
+const GITHUB_REPO = 'christbt79/wanstrow-spares-dashboard';
+const GITHUB_BRANCH = 'main';
+
+// True when this browser holds changes that aren't on GitHub yet
+let hasUnpushedChanges = false;
+
+// Read this browser's saved copy of one season (or null)
+function getLocalSeason(seasonKey) {
     try {
-        const currentSeason = dashboardData.currentSeason;
-        const response = await fetch(`./data/${currentSeason}.json`);
-        if (response.ok) {
-            const seasonData = await response.json();
-            if (!dashboardData.seasons[currentSeason]) {
-                dashboardData.seasons[currentSeason] = seasonData;
-            } else {
-                dashboardData.seasons[currentSeason] = { ...dashboardData.seasons[currentSeason], ...seasonData };
-            }
-            console.log('Loaded season data from GitHub');
-            return true;
-        }
-    } catch (error) {
-        console.log('Loading from localStorage');
-        const saved = localStorage.getItem('wanstrowDashboard');
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            dashboardData = { ...dashboardData, ...parsed };
-        }
+        const saved = JSON.parse(localStorage.getItem('wanstrowDashboard') || 'null');
+        return (saved && saved.seasons && saved.seasons[seasonKey]) || null;
+    } catch (e) {
+        return null;
     }
-    return false;
 }
 
-// Save data
+// Is the browser's copy newer than GitHub's?
+// Uses the lastUpdated stamp when present; older data without a stamp
+// falls back to comparing how many matches each copy has.
+function isLocalNewer(local, remote) {
+    if (!local) return false;
+    if (!remote) return true;
+    if (local.lastUpdated && remote.lastUpdated) return local.lastUpdated > remote.lastUpdated;
+    if (local.lastUpdated && !remote.lastUpdated) return true;
+    return (local.matches || []).length > (remote.matches || []).length;
+}
+
+// Load data
+async function loadData() {
+    const currentSeason = dashboardData.currentSeason;
+    const local = getLocalSeason(currentSeason);
+    let remote = null;
+
+    try {
+        const response = await fetch(`./data/${currentSeason}.json`, { cache: 'no-cache' });
+        if (response.ok) remote = await response.json();
+    } catch (error) {
+        console.log('Could not reach GitHub data file');
+    }
+
+    let chosen;
+    if (isLocalNewer(local, remote)) {
+        chosen = local;
+        hasUnpushedChanges = true;
+        console.log('Using this browser\'s copy: it has changes not yet on GitHub');
+    } else {
+        chosen = remote || local;
+    }
+
+    if (chosen) {
+        dashboardData.seasons[currentSeason] = { ...dashboardData.seasons[currentSeason], ...chosen };
+    }
+    return !!chosen;
+}
+
+// Save data — called only when something has actually changed
 function saveData() {
+    const season = getCurrentSeasonData();
+    season.lastUpdated = new Date().toISOString();
     localStorage.setItem('wanstrowDashboard', JSON.stringify(dashboardData));
+    hasUnpushedChanges = true;
+    updateUnpushedBanner();
     generateSharedDataFile();
+}
+
+// Copy the current season's JSON to the clipboard, ready to paste into GitHub
+async function copySeasonData() {
+    const json = JSON.stringify(getCurrentSeasonData(), null, 2);
+    let ok = false;
+    try {
+        await navigator.clipboard.writeText(json);
+        ok = true;
+    } catch (e) {
+        // Fallback for browsers that block the clipboard API
+        const ta = document.createElement('textarea');
+        ta.value = json;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+        document.body.removeChild(ta);
+    }
+
+    const season = getCurrentSeasonData();
+    const message = ok
+        ? `Copied ${dashboardData.currentSeason.replace('-', '/')} data (${(season.matches || []).length} matches). Now open GitHub, select all, paste, and commit.`
+        : 'Could not copy automatically. Please use the browser console method instead.';
+    document.querySelectorAll('.publish-status').forEach(el => {
+        el.textContent = message;
+        el.classList.toggle('error', !ok);
+    });
+}
+
+// Open the GitHub editor for the current season's data file
+function openGitHubEditor() {
+    const url = `https://github.com/${GITHUB_REPO}/edit/${GITHUB_BRANCH}/data/${dashboardData.currentSeason}.json`;
+    window.open(url, '_blank', 'noopener');
+}
+
+function updateUnpushedBanner() {
+    const banner = document.getElementById('unpushed-banner');
+    if (banner) banner.style.display = hasUnpushedChanges ? 'block' : 'none';
+    document.querySelectorAll('.publish-season-label').forEach(el => {
+        el.textContent = dashboardData.currentSeason.replace('-', '/');
+    });
 }
 
 // Generate shared data file
@@ -120,6 +198,10 @@ function setupEventListeners() {
             tip.classList.toggle('open');
         }
     });
+
+    // Publish to GitHub buttons (in the banner and the Admin tab)
+    document.querySelectorAll('.copy-season-btn').forEach(btn => btn.addEventListener('click', copySeasonData));
+    document.querySelectorAll('.open-github-btn').forEach(btn => btn.addEventListener('click', openGitHubEditor));
 
     // Match detail modal
     document.getElementById('close-match-detail-btn')?.addEventListener('click', hideMatchDetail);
@@ -204,7 +286,7 @@ async function handleSeasonChange(e) {
     // If we don't have this season's data yet, fetch it from GitHub
     if (!dashboardData.seasons[selectedSeason]) {
         try {
-            const response = await fetch(`./data/${selectedSeason}.json`);
+            const response = await fetch(`./data/${selectedSeason}.json`, { cache: 'no-cache' });
             if (response.ok) {
                 dashboardData.seasons[selectedSeason] = await response.json();
                 console.log(`Loaded ${selectedSeason} from GitHub`);
@@ -220,7 +302,7 @@ async function handleSeasonChange(e) {
 
     dashboardData.currentSeason = selectedSeason;
     updateAllDisplays();
-    saveData();
+    updateUnpushedBanner();
 }
 
 function showNewSeasonModal() {
@@ -575,7 +657,8 @@ function updateOverviewTab() {
     
     document.getElementById('average-score').textContent = season.teamStats.averageScore || 'TBD';
     
-    // Next fixture
+    // Next fixture — worked out fresh from fixtures and results on every load
+    updateNextFixture();
     document.getElementById('next-opponent').textContent = season.nextFixture.opponent;
     document.getElementById('next-date').textContent = season.nextFixture.date;
     document.getElementById('next-venue').textContent = season.nextFixture.venue;
@@ -944,29 +1027,29 @@ function updateFixturesList() {
     const fixturesList = document.getElementById('fixtures-list');
     if (!fixturesList) return;
     
-    if (season.fixtures.length === 0) {
+    if (!season.fixtures || season.fixtures.length === 0) {
         fixturesList.innerHTML = '<p class="no-matches">No fixtures loaded. Upload via Admin tab!</p>';
         return;
     }
-    
-    const today = new Date();
-    const upcomingFixtures = season.fixtures.filter(fixture => {
-        const fixtureDate = new Date(fixture.date);
-        return fixtureDate >= today;
-    }); // Show ALL remaining fixtures
-    
+
+    // Every fixture without a result, whatever its date — so postponed games stay listed
+    const upcomingFixtures = getUnplayedFixtures(season);
+
     if (upcomingFixtures.length === 0) {
         fixturesList.innerHTML = '<p class="no-matches">Season complete!</p>';
         return;
     }
-    
+
+    const todayKey = localDateKey(new Date());
     const fixturesHtml = upcomingFixtures.map(fixture => {
         const venueClass = fixture.venue === 'Home' ? 'home' : 'away';
         const timeClass = fixture.time === 'Early' ? 'time-early' : 'time-late';
+        const overdue = fixture.date < todayKey
+            ? '<span class="fixture-overdue">Awaiting result</span>' : '';
         return `
             <div class="fixture-item ${venueClass}">
                 <div class="fixture-info">
-                    <strong>${fixture.displayDate}</strong> vs ${fixture.opponent}
+                    <strong>${fixture.displayDate}</strong> vs ${fixture.opponent}${overdue}
                 </div>
                 <div class="fixture-meta">
                     <div class="fixture-venue ${venueClass.toLowerCase()}">${fixture.venue}</div>
@@ -979,23 +1062,48 @@ function updateFixturesList() {
     fixturesList.innerHTML = fixturesHtml;
 }
 
-// Update next fixture
+// "YYYY-MM-DD" for a date in the viewer's local time, to compare with fixture.date
+function localDateKey(d) {
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+// A fixture counts as played once a result exists for the same opponent at the
+// same venue, whatever date the result was entered with. Fixtures and results are
+// paired in date order, one result per fixture. A second pass pairs any leftover
+// results by opponent only, in case the venue in the fixture list differs.
+function getUnplayedFixtures(season) {
+    const norm = s => String(s || '').trim().toLowerCase();
+    const fixtures = (season.fixtures || []).slice().sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    const matches = (season.matches || []).slice().sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    const usedMatch = new Array(matches.length).fill(false);
+    const played = new Array(fixtures.length).fill(false);
+
+    // Pass 1: opponent + venue
+    fixtures.forEach((f, i) => {
+        const m = matches.findIndex((match, j) =>
+            !usedMatch[j] && norm(match.opponent) === norm(f.opponent) && norm(match.venue) === norm(f.venue));
+        if (m !== -1) { usedMatch[m] = true; played[i] = true; }
+    });
+
+    // Pass 2: opponent only, for any results still unpaired
+    fixtures.forEach((f, i) => {
+        if (played[i]) return;
+        const m = matches.findIndex((match, j) => !usedMatch[j] && norm(match.opponent) === norm(f.opponent));
+        if (m !== -1) { usedMatch[m] = true; played[i] = true; }
+    });
+
+    return fixtures.filter((f, i) => !played[i]);
+}
+
+// Next fixture = the earliest fixture without a result
 function updateNextFixture() {
     const season = getCurrentSeasonData();
-    const today = new Date();
-    const nextFixture = season.fixtures.find(fixture => {
-        const fixtureDate = new Date(fixture.date);
-        return fixtureDate >= today;
-    });
-    
-    if (nextFixture) {
-        season.nextFixture = {
-            opponent: nextFixture.opponent,
-            date: nextFixture.displayDate,
-            venue: nextFixture.venue,
-            time: nextFixture.time || 'TBD'
-        };
-    }
+    const next = getUnplayedFixtures(season)[0];
+
+    season.nextFixture = next
+        ? { opponent: next.opponent, date: next.displayDate, venue: next.venue, time: next.time || 'TBD' }
+        : { opponent: 'TBD', date: 'TBD', venue: 'TBD', time: 'TBD' };
 }
 
 // Update season display
