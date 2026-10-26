@@ -1,12 +1,12 @@
 {
   "teamStats": {
     "wins": 3,
-    "losses": 3,
+    "losses": 4,
     "draws": 1,
-    "points": 29,
-    "gamesPlayed": 7,
-    "totalPins": 1501,
-    "averageScore": 214.4
+    "points": 31,
+    "gamesPlayed": 8,
+    "totalPins": 1710,
+    "averageScore": 213.8
   },
   "players": {
     "Christian": {
@@ -24,41 +24,44 @@
       "form": "down"
     },
     "Keith": {
-      "games": 5,
-      "totalPins": 194,
+      "games": 6,
+      "totalPins": 226,
       "highScore": 44,
       "scores": [
         44,
         36,
         39,
         38,
-        37
+        37,
+        32
       ],
       "form": "down"
     },
     "Helen": {
-      "games": 4,
-      "totalPins": 110,
+      "games": 5,
+      "totalPins": 133,
       "highScore": 34,
       "scores": [
         27,
         24,
         25,
-        34
+        34,
+        23
       ],
-      "form": "up"
+      "form": "down"
     },
     "Martin": {
-      "games": 4,
-      "totalPins": 157,
+      "games": 5,
+      "totalPins": 200,
       "highScore": 48,
       "scores": [
         48,
         34,
         42,
-        33
+        33,
+        43
       ],
-      "form": "down"
+      "form": "up"
     },
     "Paddy": {
       "games": 6,
@@ -75,26 +78,28 @@
       "form": "up"
     },
     "Steve": {
-      "games": 4,
-      "totalPins": 147,
+      "games": 5,
+      "totalPins": 185,
       "highScore": 39,
       "scores": [
         36,
         34,
         39,
+        38,
         38
       ],
       "form": "up"
     },
     "Adrian": {
-      "games": 4,
-      "totalPins": 144,
+      "games": 5,
+      "totalPins": 176,
       "highScore": 43,
       "scores": [
         38,
         30,
         43,
-        33
+        33,
+        32
       ],
       "form": "down"
     },
@@ -145,17 +150,18 @@
       "form": []
     },
     "Tom": {
-      "games": 5,
-      "totalPins": 200,
+      "games": 6,
+      "totalPins": 241,
       "highScore": 49,
       "scores": [
         40,
         49,
         39,
         32,
-        40
+        40,
+        41
       ],
-      "form": "same"
+      "form": "up"
     },
     "Jabu": {
       "games": 2,
@@ -345,6 +351,32 @@
         "Teresa": 0,
         "Edd": 0,
         "Tom": 40,
+        "Jabu": 0
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Bridge Hill Mob",
+      "venue": "Home",
+      "wanstrowMatchScore": 2,
+      "opponentMatchScore": 6,
+      "wanstrowTotal": 209,
+      "opponentTotal": 220,
+      "playerScores": {
+        "Christian": 0,
+        "Keith": 32,
+        "Helen": 23,
+        "Martin": 43,
+        "Paddy": 0,
+        "Steve": 38,
+        "Adrian": 32,
+        "Jason": 0,
+        "Linda": 0,
+        "XYZ": 0,
+        "Ben": 0,
+        "Teresa": 0,
+        "Edd": 0,
+        "Tom": 41,
         "Jabu": 0
       }
     }
@@ -590,9 +622,9 @@
     }
   ],
   "nextFixture": {
-    "opponent": "Bridge Hill Mob",
-    "date": "26/10/2026",
-    "venue": "Home",
-    "time": "Early"
+    "opponent": "Deep In Cider",
+    "date": "05/11/2026",
+    "venue": "Away",
+    "time": "Late"
   }
 }
