@@ -488,134 +488,134 @@
       "time": "Late"
     },
     {
-      "date": "2026-01-05",
-      "displayDate": "05/01/2026",
+      "date": "2027-01-05",
+      "displayDate": "05/01/2027",
       "opponent": "King's Men",
       "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-01-15",
-      "displayDate": "15/01/2026",
+      "date": "2027-01-15",
+      "displayDate": "15/01/2027",
       "opponent": "Daleks",
       "venue": "Home",
       "time": "Early"
     },
     {
-      "date": "2026-01-19",
-      "displayDate": "19/01/2026",
+      "date": "2027-01-19",
+      "displayDate": "19/01/2027",
       "opponent": "Barrow Boys",
       "venue": "Home",
       "time": "Late"
     },
     {
-      "date": "2026-01-28",
-      "displayDate": "28/01/2026",
+      "date": "2027-01-28",
+      "displayDate": "28/01/2027",
       "opponent": "Dangerous Damsels",
       "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-02-03",
-      "displayDate": "03/02/2026",
+      "date": "2027-02-03",
+      "displayDate": "03/02/2027",
       "opponent": "King Pins",
       "venue": "Home",
       "time": "Early"
     },
     {
-      "date": "2026-02-11",
-      "displayDate": "11/02/2026",
+      "date": "2027-02-11",
+      "displayDate": "11/02/2027",
       "opponent": "Three Horsehoes",
       "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-02-17",
-      "displayDate": "17/02/2026",
+      "date": "2027-02-17",
+      "displayDate": "17/02/2027",
       "opponent": "Balls Deep",
       "venue": "Home",
       "time": "Late"
     },
     {
-      "date": "2026-02-24",
-      "displayDate": "24/02/2026",
+      "date": "2027-02-24",
+      "displayDate": "24/02/2027",
       "opponent": "The Tossers",
       "venue": "Away",
       "time": "Late"
     },
     {
-      "date": "2026-03-04",
-      "displayDate": "04/03/2026",
+      "date": "2027-03-04",
+      "displayDate": "04/03/2027",
       "opponent": "Double Ds",
       "venue": "Home",
       "time": "Early"
     },
     {
-      "date": "08/03/2026Bridge Hill Mob",
-      "displayDate": "Invalid Date",
-      "opponent": "Away",
-      "venue": "Early",
+      "date": "2027-03-08",
+      "displayDate": "08/03/2027",
+      "opponent": "Bridge Hill Mob",
+      "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-03-18",
-      "displayDate": "18/03/2026",
+      "date": "2027-03-18",
+      "displayDate": "18/03/2027",
       "opponent": "Deep In Cider",
       "venue": "Home",
       "time": "Late"
     },
     {
-      "date": "2026-03-26",
-      "displayDate": "26/03/2026",
+      "date": "2027-03-26",
+      "displayDate": "26/03/2027",
       "opponent": "All 3 Holes",
       "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-04-02",
-      "displayDate": "02/04/2026",
+      "date": "2027-04-02",
+      "displayDate": "02/04/2027",
       "opponent": "Allsorts",
       "venue": "Home",
       "time": "Early"
     },
     {
-      "date": "2026-04-06",
-      "displayDate": "06/04/2026",
+      "date": "2027-04-06",
+      "displayDate": "06/04/2027",
       "opponent": "Lionhearts",
       "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-04-12",
-      "displayDate": "12/04/2026",
+      "date": "2027-04-12",
+      "displayDate": "12/04/2027",
       "opponent": "The Persuaders",
       "venue": "Home",
       "time": "Early"
     },
     {
-      "date": "2026-04-21",
-      "displayDate": "21/04/2026",
+      "date": "2027-04-21",
+      "displayDate": "21/04/2027",
       "opponent": "The Horseshoe Belles",
       "venue": "Home",
       "time": "Late"
     },
     {
-      "date": "2026-04-28",
-      "displayDate": "28/04/2026",
+      "date": "2027-04-28",
+      "displayDate": "28/04/2027",
       "opponent": "Pin Pounders",
       "venue": "Away",
       "time": "Early"
     },
     {
-      "date": "2026-05-04",
-      "displayDate": "04/05/2026",
+      "date": "2027-05-04",
+      "displayDate": "04/05/2027",
       "opponent": "King's Men",
       "venue": "Home",
       "time": "Early"
     },
     {
-      "date": "2026-05-13",
-      "displayDate": "13/05/2026",
+      "date": "2027-05-13",
+      "displayDate": "13/05/2027",
       "opponent": "Daleks",
       "venue": "Away",
       "time": "Late"
@@ -626,5 +626,6 @@
     "date": "05/11/2026",
     "venue": "Away",
     "time": "Late"
-  }
+  },
+  "lastUpdated": "2026-10-26T21:41:34.556Z"
 }
