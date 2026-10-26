@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wanstrow Spares - Pub Skittles Dashboard</title>
     <link rel="icon" type="image/png" href="wanstrow-logo.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2026-10-26">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Additional styles for new features */
@@ -20,7 +20,7 @@
             padding: 0.5rem;
             border-radius: 5px;
             border: 2px solid #8b4513;
-            background: white;
+            background-color: white;
             font-size: 1rem;
         }
         
@@ -187,7 +187,18 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="container">
-                
+
+                <!-- Unpublished changes banner (only appears in the browser that made the changes) -->
+                <div id="unpushed-banner" class="unpushed-banner" style="display: none;">
+                    <p><strong><i class="fas fa-triangle-exclamation"></i> Changes not yet published.</strong>
+                    This browser has <span class="publish-season-label">2026/27</span> updates that aren't on GitHub yet, so the rest of the team can't see them.</p>
+                    <div class="publish-actions">
+                        <button type="button" class="copy-season-btn"><i class="fas fa-copy"></i> Copy season data</button>
+                        <button type="button" class="open-github-btn"><i class="fab fa-github"></i> Open on GitHub</button>
+                    </div>
+                    <p class="publish-status"></p>
+                </div>
+
                 <!-- Season Selector -->
                 <div class="season-selector">
                     <label><strong>Season:</strong></label>
@@ -415,6 +426,22 @@
 
                 <!-- Admin Tab -->
                 <div class="tab-content admin-only" id="admin" style="display: none;">
+                    <!-- Publish to GitHub -->
+                    <div class="content-card">
+                        <h3><i class="fas fa-cloud-arrow-up"></i> Publish to GitHub</h3>
+                        <p>After adding a match, fixtures or players, publish so the whole team sees the update:</p>
+                        <ol class="publish-steps">
+                            <li><strong>Copy season data</strong> — copies the <span class="publish-season-label">2026/27</span> data to your clipboard</li>
+                            <li><strong>Open on GitHub</strong> — opens the season's data file in the GitHub editor</li>
+                            <li>Select all the existing text, paste over it, and click <strong>Commit changes</strong></li>
+                        </ol>
+                        <div class="publish-actions">
+                            <button type="button" class="copy-season-btn"><i class="fas fa-copy"></i> Copy season data</button>
+                            <button type="button" class="open-github-btn"><i class="fab fa-github"></i> Open on GitHub</button>
+                        </div>
+                        <p class="publish-status"></p>
+                    </div>
+
                     <!-- CSV Fixture Upload -->
                     <div class="content-card">
                         <h3><i class="fas fa-upload"></i> Upload Season Fixtures</h3>
@@ -480,6 +507,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2026-10-26"></script>
 </body>
 </html>
