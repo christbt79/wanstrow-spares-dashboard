@@ -1300,3 +1300,58 @@ select {
     font-weight: 600;
     white-space: nowrap;
 }
+
+/* Match pop-up: admin Edit / Delete */
+.match-admin-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cream-dark);
+}
+
+.match-admin-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: var(--white);
+}
+
+.match-admin-actions .edit-match-btn {
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+}
+
+.match-admin-actions .delete-match-btn {
+    border: 2px solid var(--danger);
+    color: var(--danger);
+}
+
+.match-admin-actions .delete-match-btn:hover {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.match-admin-actions .edit-match-btn:hover {
+    background: var(--primary-green);
+    color: var(--cream);
+}
+
+/* Add Match form: cancel button shown while editing */
+.cancel-edit-btn {
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    border: 2px solid var(--cream-dark);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
