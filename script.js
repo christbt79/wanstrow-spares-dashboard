@@ -33,6 +33,12 @@ let isAdmin = false;
 // Initialize
 let playerSortState = { column: null, direction: 'desc' };
 
+// The season loaded on start-up — the only one whose matches can be edited
+const liveSeason = dashboardData.currentSeason;
+
+// Index of the match being edited in the Add Match form (null = adding a new match)
+let editingMatchIndex = null;
+
 document.addEventListener('DOMContentLoaded', async function() {
     await loadData();
     setupEventListeners();
@@ -162,7 +168,17 @@ function generateSharedDataFile() {
 
 // Get current season data
 function getCurrentSeasonData() {
-    return dashboardData.seasons[dashboardData.currentSeason] || dashboardData.seasons['2026-27'];
+    const season = dashboardData.seasons[dashboardData.currentSeason] || dashboardData.seasons['2026-27'];
+    // Fill in anything a season file might be missing (e.g. an archive with no
+    // player list), so no part of the page can crash on it
+    if (season) {
+        if (!season.players) season.players = {};
+        if (!season.matches) season.matches = [];
+        if (!season.fixtures) season.fixtures = [];
+        if (!season.teamStats) season.teamStats = { wins: 0, losses: 0, draws: 0, points: 0, gamesPlayed: 0, totalPins: 0, averageScore: 0 };
+        if (!season.nextFixture) season.nextFixture = { opponent: 'TBD', date: 'TBD', venue: 'TBD', time: 'TBD' };
+    }
+    return season;
 }
 
 // Setup event listeners
@@ -197,6 +213,12 @@ function setupEventListeners() {
             e.stopPropagation();
             tip.classList.toggle('open');
         }
+    });
+
+    // Cancel editing a match
+    document.getElementById('cancel-edit-btn')?.addEventListener('click', () => {
+        exitEditMode();
+        switchTab('results');
     });
 
     // Publish to GitHub buttons (in the banner and the Admin tab)
@@ -357,6 +379,76 @@ function startNewSeason() {
     alert(`New season ${newSeasonName} created! Don't forget to upload fixtures.`);
 }
 
+// Parse pasted fixture CSV. Returns the fixtures plus any errors (rows that
+// can't be read — nothing is loaded if there are any) and warnings (rows dated
+// earlier than the row above, usually a wrong year).
+function parseFixturesCsv(text) {
+    const fixtures = [];
+    const errors = [];
+    const warnings = [];
+    const pad = n => String(n).padStart(2, '0');
+
+    text.split(/\r?\n/).forEach((line, index) => {
+        const lineNo = index + 1;
+        const raw = line.trim();
+        if (!raw) return;                                   // blank line
+        if (/^date\s*,/i.test(raw)) return;                 // header row
+
+        const parts = raw.split(',').map(p => p.trim());
+        const [rawDate = '', opponent = '', rawVenue = '', rawTime = ''] = parts;
+        const problems = [];
+
+        // Date: DD/MM/YYYY (or D/M/YYYY) or YYYY-MM-DD, and a real calendar date
+        let y, m, d;
+        let match = rawDate.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+        if (match) {
+            [, d, m, y] = match.map(Number);
+        } else if ((match = rawDate.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/))) {
+            [, y, m, d] = match.map(Number);
+        }
+        const dateObj = match ? new Date(y, m - 1, d) : null;
+        const validDate = dateObj && dateObj.getFullYear() === y && dateObj.getMonth() === m - 1 && dateObj.getDate() === d;
+        if (!validDate) problems.push(`date "${rawDate}" isn't readable — use DD/MM/YYYY`);
+
+        if (!opponent) problems.push('opponent is missing');
+
+        const venue = /^home$/i.test(rawVenue) ? 'Home' : /^away$/i.test(rawVenue) ? 'Away' : null;
+        if (!venue) problems.push(`venue "${rawVenue}" should be Home or Away`);
+
+        // Time: Early/Late, or HH:MM (20:30 or later = Late)
+        let time = 'Early';
+        if (/^late$/i.test(rawTime)) {
+            time = 'Late';
+        } else if (/^\d{1,2}:\d{2}$/.test(rawTime)) {
+            const [h, min] = rawTime.split(':').map(Number);
+            time = (h > 20 || (h === 20 && min >= 30)) ? 'Late' : 'Early';
+        } else if (rawTime && !/^early$/i.test(rawTime)) {
+            problems.push(`time "${rawTime}" should be Early, Late or a time like 20:00`);
+        }
+
+        if (problems.length > 0) {
+            errors.push(`Line ${lineNo} (${raw}): ${problems.join('; ')}`);
+            return;
+        }
+
+        const isoDate = `${y}-${pad(m)}-${pad(d)}`;
+        const previous = fixtures[fixtures.length - 1];
+        if (previous && isoDate < previous.date) {
+            warnings.push(`Line ${lineNo}: ${pad(d)}/${pad(m)}/${y} ${opponent} comes after ${previous.displayDate} ${previous.opponent}`);
+        }
+
+        fixtures.push({
+            date: isoDate,
+            displayDate: `${pad(d)}/${pad(m)}/${y}`,
+            opponent,
+            venue,
+            time
+        });
+    });
+
+    return { fixtures, errors, warnings };
+}
+
 // Fixture upload
 function uploadFixtures() {
     const csvInput = document.getElementById('csv-input').value.trim();
@@ -365,51 +457,24 @@ function uploadFixtures() {
         return;
     }
 
-    const lines = csvInput.split('\n');
-    const fixtures = [];
-    const uniqueOpponents = new Set();
+    const { fixtures, errors, warnings } = parseFixturesCsv(csvInput);
 
-    lines.forEach(line => {
-        const parts = line.split(',').map(p => p.trim());
-        if (parts.length >= 3) {
-            const [rawDate, opponent, venue, rawTime] = parts;
-
-            // Accept DD/MM/YYYY or YYYY-MM-DD
-            let isoDate;
-            if (rawDate.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
-                const [d, m, y] = rawDate.split('/');
-                isoDate = `${y}-${m}-${d}`;
-            } else {
-                isoDate = rawDate;
-            }
-            const dateObj = new Date(isoDate);
-            const displayDate = dateObj.toLocaleDateString('en-GB');
-
-            // Accept Early/Late or HH:MM (20:30+ = Late, before = Early)
-            let timeLabel = 'Early';
-            if (rawTime) {
-                if (rawTime === 'Early' || rawTime === 'Late') {
-                    timeLabel = rawTime;
-                } else if (rawTime.match(/^\d{2}:\d{2}$/)) {
-                    const [h, m] = rawTime.split(':').map(Number);
-                    timeLabel = (h > 20 || (h === 20 && m >= 30)) ? 'Late' : 'Early';
-                }
-            }
-
-            fixtures.push({
-                date: isoDate,
-                displayDate: displayDate,
-                opponent: opponent,
-                venue: venue,
-                time: timeLabel
-            });
-            uniqueOpponents.add(opponent);
-        }
-    });
+    // Any unreadable row: load nothing, and say exactly which lines to fix
+    if (errors.length > 0) {
+        alert('No fixtures were loaded. Please fix these lines and try again:\n\n' + errors.join('\n'));
+        return;
+    }
 
     if (fixtures.length === 0) {
         alert('No valid fixtures found. Use format: Date,Opponent,Venue,Time');
         return;
+    }
+
+    // Dates going backwards usually means a wrong year — let the admin check first
+    if (warnings.length > 0) {
+        const proceed = confirm('Please check these dates — a fixture is earlier than the one before it, which often means the wrong year:\n\n'
+            + warnings.join('\n') + '\n\nLoad the fixtures anyway?');
+        if (!proceed) return;
     }
 
     const season = getCurrentSeasonData();
@@ -546,64 +611,89 @@ function handleMatchSubmit(e) {
         return;
     }
 
+    if (editingMatchIndex !== null) {
+        // Replace the match being edited, keeping its place in the list
+        const season = getCurrentSeasonData();
+        season.matches[editingMatchIndex] = matchData;
+        recalculateSeason(season);
+        updateNextFixture();
+        saveData();
+        exitEditMode();
+        alert('Match updated! Remember to publish to GitHub.');
+        updateAllDisplays();
+        switchTab('results');
+        return;
+    }
+
     processMatch(matchData);
     document.getElementById('match-form').reset();
     alert('Match saved successfully!');
     updateAllDisplays();
 }
 
-// Process match
+// Process a new match: add it to the list, then rebuild all stats from the list
 function processMatch(matchData) {
     const season = getCurrentSeasonData();
     season.matches.push(matchData);
-    
-    const isWin = matchData.wanstrowMatchScore > matchData.opponentMatchScore;
-    const isLoss = matchData.wanstrowMatchScore < matchData.opponentMatchScore;
-    const isDraw = matchData.wanstrowMatchScore === matchData.opponentMatchScore;
-    
-    if (isWin) season.teamStats.wins++;
-    if (isLoss) season.teamStats.losses++;
-    if (isDraw) season.teamStats.draws++;
-    
-    season.teamStats.gamesPlayed++;
-    
-    // Calculate points with decimal support
-    let totalPoints = 0;
-    season.matches.forEach(match => {
-        totalPoints += parseFloat(match.wanstrowMatchScore);
+    recalculateSeason(season);
+    updateNextFixture();
+    saveData();
+}
+
+// Rebuild team and player stats from the match list, so the match list is the
+// single source of truth. Matches are counted in the order they were entered,
+// exactly as the stats were built before. Only players in the squad are counted.
+function recalculateSeason(season) {
+    const matches = season.matches || [];
+    const stats = { wins: 0, losses: 0, draws: 0, points: 0, gamesPlayed: 0, totalPins: 0, averageScore: 0 };
+
+    // Reset every squad player, keeping their handicap flag
+    const players = season.players || {};
+    Object.keys(players).forEach(name => {
+        players[name] = {
+            ...players[name],
+            games: 0, totalPins: 0, highScore: 0, scores: [], form: 'same'
+        };
     });
-    season.teamStats.points = Math.round(totalPoints * 10) / 10;
-    
-    season.teamStats.totalPins += matchData.wanstrowTotal;
-    season.teamStats.averageScore = Math.round((season.teamStats.totalPins / season.teamStats.gamesPlayed) * 10) / 10;
-    
-    // Update player stats
-    Object.keys(matchData.playerScores).forEach(playerName => {
-        const score = matchData.playerScores[playerName];
-        const player = season.players[playerName];
-        
-        if (score > 0 && player) {
+
+    let points = 0;
+    matches.forEach(match => {
+        const us = parseFloat(match.wanstrowMatchScore) || 0;
+        const them = parseFloat(match.opponentMatchScore) || 0;
+        if (us > them) stats.wins++;
+        else if (us < them) stats.losses++;
+        else stats.draws++;
+
+        stats.gamesPlayed++;
+        points += us;
+        stats.totalPins += parseInt(match.wanstrowTotal) || 0;
+
+        Object.keys(match.playerScores || {}).forEach(name => {
+            const score = match.playerScores[name];
+            const player = players[name];
+            if (!(score > 0) || !player) return;
+
             player.games++;
             player.totalPins += score;
             player.scores.push(score);
-            
-            if (score > player.highScore) {
-                player.highScore = score;
-            }
-            
-            // Update form - compare last game to previous games
+            if (score > player.highScore) player.highScore = score;
+
+            // Form: latest game vs the average of all their previous games
             if (player.scores.length >= 2) {
-                const lastScore = player.scores[player.scores.length - 1];
-                const previousAvg = player.scores.slice(0, -1).reduce((a, b) => a + b, 0) / (player.scores.length - 1);
-                player.form = lastScore > previousAvg ? 'up' : lastScore < previousAvg ? 'down' : 'same';
+                const previous = player.scores.slice(0, -1);
+                const previousAvg = previous.reduce((a, b) => a + b, 0) / previous.length;
+                player.form = score > previousAvg ? 'up' : score < previousAvg ? 'down' : 'same';
             } else {
                 player.form = 'same';
             }
-        }
+        });
     });
-    
-    updateNextFixture();
-    saveData();
+
+    stats.points = Math.round(points * 10) / 10;
+    stats.averageScore = stats.gamesPlayed > 0
+        ? Math.round((stats.totalPins / stats.gamesPlayed) * 10) / 10
+        : 0;
+    season.teamStats = stats;
 }
 
 // Update all displays
@@ -1008,12 +1098,101 @@ function showMatchDetail(matchIndex) {
             </div>
         `).join('');
 
+    // Edit/Delete: admin only, and only for the live season (never the archive)
+    const adminActions = (isAdmin && dashboardData.currentSeason === liveSeason) ? `
+        <div class="match-admin-actions">
+            <button type="button" class="edit-match-btn" onclick="editMatch(${matchIndex})"><i class="fas fa-pen"></i> Edit</button>
+            <button type="button" class="delete-match-btn" onclick="deleteMatch(${matchIndex})"><i class="fas fa-trash"></i> Delete</button>
+        </div>` : '';
+
     body.innerHTML = `
         <p class="match-detail-meta">${date} • ${match.venue} • Pins ${match.wanstrowTotal}-${match.opponentTotal}</p>
         <div class="match-detail-scores">${rowsHtml}</div>
+        ${adminActions}
     `;
 
     modal.classList.add('show');
+}
+
+// Delete a match, then rebuild all stats from the remaining matches
+function deleteMatch(matchIndex) {
+    const season = getCurrentSeasonData();
+    const match = season.matches[matchIndex];
+    if (!match) return;
+
+    const label = `Wanstrow ${match.wanstrowMatchScore}-${match.opponentMatchScore} ${match.opponent} (${new Date(match.date).toLocaleDateString('en-GB')})`;
+    if (!confirm(`Delete this result?\n\n${label}\n\nAll stats will be recalculated. Remember to publish to GitHub afterwards.`)) return;
+
+    season.matches.splice(matchIndex, 1);
+    recalculateSeason(season);
+    updateNextFixture();
+    saveData();
+    hideMatchDetail();
+    updateAllDisplays();
+}
+
+// Open the Add Match form pre-filled with an existing match, in edit mode
+function editMatch(matchIndex) {
+    const season = getCurrentSeasonData();
+    const match = season.matches[matchIndex];
+    if (!match) return;
+
+    hideMatchDetail();
+    editingMatchIndex = matchIndex;
+    populatePlayerInputs();
+
+    document.getElementById('match-date').value = match.date;
+
+    // Make sure the opponent is in the dropdown, even if not in the fixture list
+    const opponentSelect = document.getElementById('opponent');
+    if (![...opponentSelect.options].some(o => o.value === match.opponent)) {
+        opponentSelect.add(new Option(match.opponent, match.opponent));
+    }
+    opponentSelect.value = match.opponent;
+    document.getElementById('opponent-match-label').textContent = match.opponent;
+    document.getElementById('opponent-total-label').textContent = match.opponent;
+
+    document.getElementById('venue').value = match.venue;
+    document.getElementById('wanstrow-match-score').value = match.wanstrowMatchScore;
+    document.getElementById('opponent-match-score').value = match.opponentMatchScore;
+    document.getElementById('wanstrow-total').value = match.wanstrowTotal;
+    document.getElementById('opponent-total').value = match.opponentTotal;
+
+    // Fill player scores; add an input for anyone who played but has since left the squad
+    const grid = document.getElementById('players-grid');
+    Object.keys(match.playerScores || {}).forEach(name => {
+        const score = match.playerScores[name];
+        if (!(score > 0)) return;
+        let input = grid.querySelector(`input[name="${CSS.escape(name)}"]`);
+        if (!input) {
+            grid.insertAdjacentHTML('beforeend', `
+                <div class="player-input">
+                    <label>${name} (not in squad)</label>
+                    <input type="number" name="${name}" placeholder="0" min="0">
+                </div>`);
+            input = grid.querySelector(`input[name="${CSS.escape(name)}"]`);
+        }
+        input.value = score;
+    });
+
+    document.getElementById('entry-heading').innerHTML = '<i class="fas fa-pen"></i> Edit Match Result';
+    document.getElementById('save-match-btn').innerHTML = '<i class="fas fa-save"></i> Update Match';
+    document.getElementById('cancel-edit-btn').style.display = 'inline-flex';
+
+    switchTab('entry');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Leave edit mode and put the Add Match form back to normal
+function exitEditMode() {
+    editingMatchIndex = null;
+    document.getElementById('match-form').reset();
+    populatePlayerInputs();
+    document.getElementById('opponent-match-label').textContent = 'Opponent';
+    document.getElementById('opponent-total-label').textContent = 'Opponent';
+    document.getElementById('entry-heading').innerHTML = '<i class="fas fa-plus"></i> Add Match Result';
+    document.getElementById('save-match-btn').innerHTML = '<i class="fas fa-save"></i> Save Match';
+    document.getElementById('cancel-edit-btn').style.display = 'none';
 }
 
 function hideMatchDetail() {
