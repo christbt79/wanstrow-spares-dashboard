@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wanstrow Spares - Pub Skittles Dashboard</title>
     <link rel="icon" type="image/png" href="wanstrow-logo.png">
-    <link rel="stylesheet" href="styles.css?v=2026-10-26">
+    <link rel="stylesheet" href="styles.css?v=2026-10-27">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Additional styles for new features */
@@ -360,7 +360,7 @@
                 <!-- Match Entry Tab -->
                 <div class="tab-content admin-only" id="entry" style="display: none;">
                     <div class="content-card">
-                        <h3><i class="fas fa-plus"></i> Add Match Result</h3>
+                        <h3 id="entry-heading"><i class="fas fa-plus"></i> Add Match Result</h3>
                         <form id="match-form" class="match-form">
                             <div class="form-row">
                                 <div class="form-group">
@@ -416,7 +416,10 @@
                             </div>
 
                             <div class="form-actions">
-                                <button type="submit" class="save-btn">
+                                <button type="button" id="cancel-edit-btn" class="cancel-edit-btn" style="display: none;">
+                                    <i class="fas fa-xmark"></i> Cancel edit
+                                </button>
+                                <button type="submit" class="save-btn" id="save-match-btn">
                                     <i class="fas fa-save"></i> Save Match
                                 </button>
                             </div>
@@ -507,6 +510,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=2026-10-26"></script>
+    <script src="script.js?v=2026-10-27"></script>
 </body>
 </html>
