@@ -1,17 +1,17 @@
 {
   "teamStats": {
     "wins": 3,
-    "losses": 4,
+    "losses": 5,
     "draws": 1,
-    "points": 31,
-    "gamesPlayed": 8,
-    "totalPins": 1710,
-    "averageScore": 213.8
+    "points": 32,
+    "gamesPlayed": 9,
+    "totalPins": 1908,
+    "averageScore": 212
   },
   "players": {
     "Christian": {
-      "games": 6,
-      "totalPins": 232,
+      "games": 7,
+      "totalPins": 263,
       "highScore": 44,
       "scores": [
         39,
@@ -19,7 +19,8 @@
         37,
         41,
         37,
-        34
+        34,
+        31
       ],
       "form": "down"
     },
@@ -64,8 +65,8 @@
       "form": "up"
     },
     "Paddy": {
-      "games": 6,
-      "totalPins": 184,
+      "games": 7,
+      "totalPins": 215,
       "highScore": 37,
       "scores": [
         29,
@@ -73,85 +74,89 @@
         24,
         37,
         36,
-        35
+        35,
+        31
       ],
       "form": "up"
     },
     "Steve": {
-      "games": 5,
-      "totalPins": 185,
+      "games": 6,
+      "totalPins": 223,
       "highScore": 39,
       "scores": [
         36,
         34,
         39,
         38,
+        38,
         38
       ],
       "form": "up"
     },
     "Adrian": {
-      "games": 5,
-      "totalPins": 176,
+      "games": 6,
+      "totalPins": 216,
       "highScore": 43,
       "scores": [
         38,
         30,
         43,
         33,
-        32
+        32,
+        40
       ],
-      "form": "down"
+      "form": "up"
     },
     "Jason": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
       "scores": [],
-      "form": []
+      "form": "same"
     },
     "Linda": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
       "scores": [],
-      "form": []
+      "form": "same"
     },
     "XYZ": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
       "scores": [],
-      "form": [],
+      "form": "same",
       "isHandicap": true
     },
     "Ben": {
-      "games": 2,
-      "totalPins": 72,
+      "games": 3,
+      "totalPins": 104,
       "highScore": 42,
       "scores": [
         30,
-        42
+        42,
+        32
       ],
-      "form": "up"
+      "form": "down"
     },
     "Teresa": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
       "scores": [],
-      "form": []
+      "form": "same"
     },
     "Edd": {
       "games": 0,
       "totalPins": 0,
       "highScore": 0,
       "scores": [],
-      "form": []
+      "form": "same"
     },
     "Tom": {
-      "games": 6,
-      "totalPins": 241,
+      "games": 7,
+      "totalPins": 267,
       "highScore": 49,
       "scores": [
         40,
@@ -159,9 +164,10 @@
         39,
         32,
         40,
-        41
+        41,
+        26
       ],
-      "form": "up"
+      "form": "down"
     },
     "Jabu": {
       "games": 2,
@@ -377,6 +383,32 @@
         "Teresa": 0,
         "Edd": 0,
         "Tom": 41,
+        "Jabu": 0
+      }
+    },
+    {
+      "date": "2026-11-05",
+      "opponent": "Deep In Cider",
+      "venue": "Away",
+      "wanstrowMatchScore": 1,
+      "opponentMatchScore": 7,
+      "wanstrowTotal": 198,
+      "opponentTotal": 242,
+      "playerScores": {
+        "Christian": 31,
+        "Keith": 0,
+        "Helen": 0,
+        "Martin": 0,
+        "Paddy": 31,
+        "Steve": 38,
+        "Adrian": 40,
+        "Jason": 0,
+        "Linda": 0,
+        "XYZ": 0,
+        "Ben": 32,
+        "Teresa": 0,
+        "Edd": 0,
+        "Tom": 26,
         "Jabu": 0
       }
     }
@@ -622,10 +654,10 @@
     }
   ],
   "nextFixture": {
-    "opponent": "Deep In Cider",
-    "date": "05/11/2026",
-    "venue": "Away",
-    "time": "Late"
+    "opponent": "All 3 Holes",
+    "date": "13/11/2026",
+    "venue": "Home",
+    "time": "Early"
   },
-  "lastUpdated": "2026-10-26T21:41:34.556Z"
+  "lastUpdated": "2026-11-05T22:24:05.352Z"
 }
